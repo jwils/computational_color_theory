@@ -11,5 +11,10 @@ class CreateQuizzes < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    create_table :quizzes_questions, :id => false do |t|
+      t.column :quiz_id, :integer
+      t.column :question_id, :integer
+    end
   end
 end
