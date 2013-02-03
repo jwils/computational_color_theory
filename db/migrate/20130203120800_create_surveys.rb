@@ -1,6 +1,6 @@
-class CreateQuizzes < ActiveRecord::Migration
+class CreateSurveys < ActiveRecord::Migration
   def change
-    create_table :quizzes do |t|
+    create_table :surveys do |t|
       t.integer :ruler_height
       t.integer :ruler_width
       t.string :ip_address
@@ -12,8 +12,8 @@ class CreateQuizzes < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :quizzes_questions, :id => false do |t|
-      t.column :quiz_id, :integer
+    create_table :surveys_questions, :id => false do |t|
+      t.column :survey_id, :integer
       t.column :question_id, :integer
     end
   end

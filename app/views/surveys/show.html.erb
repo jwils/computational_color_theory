@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Ruler height:</b>
+  <%= @survey.ruler_height %>
+</p>
+
+<p>
+  <b>Ruler width:</b>
+  <%= @survey.ruler_width %>
+</p>
+
+<p>
+  <b>Ip address:</b>
+  <%= @survey.ip_address %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%= @survey.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @survey.end_time %>
+</p>
+
+<p>
+  <b>Validation hash:</b>
+  <%= @survey.validation_hash %>
+</p>
+
+<p>
+  <b>Worker:</b>
+  <%= @survey.worker_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_survey_path(@survey) %> |
+<%= link_to 'Back', surveys_path %>

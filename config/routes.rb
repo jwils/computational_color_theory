@@ -1,4 +1,7 @@
-Survey::Application.routes.draw do
+SurveyApp::Application.routes.draw do
+  resources :surveys
+
+
   resources :responses
 
 
