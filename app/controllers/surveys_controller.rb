@@ -24,7 +24,15 @@ class SurveysController < ApplicationController
   # GET /surveys/new
   # GET /surveys/new.json
   def new
+    @disabled      = Turkee::TurkeeFormHelper::disable_form_fields?(params)
+
     @survey = Survey.new
+    @survey.turkee_task   = Turkee::TurkeeTask.find_by_hit_id(params[:hitId]).id rescue nil
+
+    unless @disabled
+      @survey.questions = Question.get_random_questions(56)
+      @survey.save
+    end
 
     respond_to do |format|
       format.html # new.html.erb

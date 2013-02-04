@@ -8,13 +8,15 @@ class CreateSurveys < ActiveRecord::Migration
       t.timestamp :end_time
       t.string :validation_hash
       t.string :worker_id
+      t.references :turkee_task
 
       t.timestamps
     end
+    add_index :surveys, :turkee_task_id
+  end
 
-    create_table :surveys_questions, :id => false do |t|
-      t.column :survey_id, :integer
-      t.column :question_id, :integer
-    end
+  create_table 'surveys_questions', :id => false do |t|
+    t.column :survey_id, :integer
+    t.column :question_id, :integer
   end
 end

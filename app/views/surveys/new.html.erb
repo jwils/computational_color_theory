@@ -1,5 +1,45 @@
-<h1>New survey</h1>
+questions = data['questions']
+<%= javascript_tag do %>
+    window.questions = <%= raw @survey.questions.to_json( :include => [:img1, :img2] ) %>
+<% end %>
 
-<%= render 'form' %>
+<div class="container visible-desktop">
+  <div id="instructions">
 
-<%= link_to 'Back', surveys_path %>
+    <h2> Task Description </h2>
+    <p>This HIT is part of a scientific research project at the University of Pennsylvania, and your participation is voluntary. The purpose of this project is to study the readability of text of variable font, size, and color. You will be asked to answer a series of questions. The answers we receive may be used in publication. However, your responses are anonymous; no identifying information will be included in any publication. If you have questions about the study, please use the Contact Requester link on Amazon to contact the requester.</p>
+
+    <h2> Instructions </h2>
+    <p> You will be presented a total of 10 image pairs. Each image contains text. Your task is to <b> select the image in each pair that you think is more readable </b>. You make the selection by moving the mouse over one of the images and clicking. To start the next trial, you move the mouse back to the black box at the top center of the screen. At the end of the experiment, you will be presented with a completion code for your participation. </p>
+
+    <h3> Before you start</h3>
+    <%= image_tag("ruler.png") %>
+    <br />
+    <br />
+    <p> About how wide and tall is the above retangle <i> in inches? </i> </p>
+    width: <input type="number" min="0" name="width" id="ruler-width" style="width:50px;"> inches <br/>
+    height: <input type="number" min="0" name="height" id="ruler-height" style="width:50px;"> inches <br/>
+    If you are coming from mechanical turk please enter your Worker ID here:<br/>
+    <input class="input-medium" type="text" id="mturk-id" /><br/>
+    <button id="startQuiz" class="btn">Start the survey</button>
+  </div>
+  <div id="completion" style="display: none;">
+    <h2> End </h2>
+    <p>Thank you for your participation. Data acquired here will be used to better determine the readability of colored text.
+      <%= render 'form' %>
+      <br/> <br/> <b> Your completion code is <span id='response_code'></span></b> </p>
+  </div>
+  <div id="mouseDiv">
+    <h4 onmouseover='onMousePlace()'>Put Mouse Here</h4>
+  </div>
+  <br />
+  <br />
+  <br />
+  <div id="qHolder">
+    <img id="image1" class="answer1" width="400" height="500">
+
+
+
+    <img id="image2" class="answer2" width="400" height="500">
+  </div><br />
+</div>

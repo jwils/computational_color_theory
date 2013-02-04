@@ -4,16 +4,18 @@ one:
   ruler_height: 1
   ruler_width: 1
   ip_address: MyString
-  start_time: 2013-02-03 07:08:00
-  end_time: 2013-02-03 07:08:00
+  start_time: 2013-02-03 07:16:12
+  end_time: 2013-02-03 07:16:12
   validation_hash: MyString
   worker_id: MyString
+  turkee_task: 
 
 two:
   ruler_height: 1
   ruler_width: 1
   ip_address: MyString
-  start_time: 2013-02-03 07:08:00
-  end_time: 2013-02-03 07:08:00
+  start_time: 2013-02-03 07:16:12
+  end_time: 2013-02-03 07:16:12
   validation_hash: MyString
   worker_id: MyString
+  turkee_task: 

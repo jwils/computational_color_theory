@@ -1,0 +1,56 @@
+.navbar-inverse .nav .active > a, 
+.navbar-inverse .nav .active > a:hover, 
+.navbar-inverse .nav .active > a:focus {
+	background: url(../img/highlighted.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-position-y: 25px;
+}
+
+body {
+	background:#D5D5D5;
+	padding-top: 60px;
+}
+
+img#image {
+	
+}
+
+
+img#image1:hover{
+	 background: #000000;
+     border-style: outset;
+}
+img#image2:hover{
+	 background: #000000;
+     border-style: outset;
+}
+
+div#qHolder {
+   margin-top:-50px;
+}
+
+img#image1 {
+  padding: 5px;
+    background: #A8A8A8;
+    border-style: outset;
+    margin-left:50px;
+}
+img#image2 {
+  padding: 5px;
+    background: #A8A8A8;
+    border-style: outset;
+    margin-left:50px;
+}
+
+button.startQuiz {
+	margin: 0 auto;
+}
+
+h4 {
+	width:75px;
+	color: #A8A8A8;
+	background: #000000;
+	text-align: center;
+	margin: 0 auto;
+}
