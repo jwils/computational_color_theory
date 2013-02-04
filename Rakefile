@@ -6,4 +6,4 @@ require 'tasks/turkee'
 
 require File.expand_path('../config/application', __FILE__)
 
-SurveyApp::Application.load_tasks
+Surveyapp::Application.load_tasks

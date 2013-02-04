@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   belongs_to :img2, :class_name => Image, :foreign_key => :img2_id
   has_and_belongs_to_many :quizzes
   has_many :answers
+  attr_accessible  :img1, :img2, :tag_list
   acts_as_taggable
 
 

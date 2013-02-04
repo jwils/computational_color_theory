@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(:version => 20130204031901) do
   add_index "questions", ["img1_id"], :name => "index_questions_on_img1_id"
   add_index "questions", ["img2_id"], :name => "index_questions_on_img2_id"
 
+  create_table "questions_surveys", :id => false, :force => true do |t|
+    t.integer "survey_id"
+    t.integer "question_id"
+  end
+
   create_table "responses", :force => true do |t|
     t.integer  "survey_id"
     t.integer  "question_id"
@@ -54,11 +59,6 @@ ActiveRecord::Schema.define(:version => 20130204031901) do
   end
 
   add_index "surveys", ["turkee_task_id"], :name => "index_surveys_on_turkee_task_id"
-
-  create_table "surveys_questions", :id => false, :force => true do |t|
-    t.integer "survey_id"
-    t.integer "question_id"
-  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

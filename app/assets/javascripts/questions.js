@@ -21,6 +21,8 @@ function recordMeasurement(width, height) {
 function closeInstructions() {
     $("div#qHolder").show()
     $("div#instructions").hide();
+    questions = $('#qHolder').data('questions');
+
     nextQuestion(questions[question -1].img1,
     questions[question -1].img2);
     quiz_id = data['quiz_id']
@@ -81,8 +83,8 @@ function imgClick() {
     $("img.answer2").attr("disabled", true);
 
     $("div#qHolder").fadeOut(1000, function(){
-        $("img.answer1").attr("src",  image1);
-        $("img.answer2").attr("src",  image2);
+        $("img.answer1").attr("src",  image1.image_url);
+        $("img.answer2").attr("src",  image2.image_url);
         prepareForNextQuestion();
     });
   }

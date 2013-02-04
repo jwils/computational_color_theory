@@ -27,10 +27,16 @@ class SurveysController < ApplicationController
     @disabled      = Turkee::TurkeeFormHelper::disable_form_fields?(params)
 
     @survey = Survey.new
-    @survey.turkee_task   = Turkee::TurkeeTask.find_by_hit_id(params[:hitId]).id rescue nil
+    task = Turkee::TurkeeTask.find_by_hit_id(params[:hitId]) rescue nil
+
 
     unless @disabled
-      @survey.questions = Question.get_random_questions(56)
+      @survey.questions = Question.get_random_questions(5)
+      @survey.turkee_task   =  task
+      @question = @survey.questions.to_json( :only => [:id, :img1, :img2],
+          :include => {:img1  => {:only => :id, :methods => [:image_url]},
+                       :img2  => {:only => :id, :methods => [:image_url]}
+      } )
       @survey.save
     end
 
