@@ -4,10 +4,7 @@ class CreateSurveys < ActiveRecord::Migration
       t.integer :ruler_height
       t.integer :ruler_width
       t.string :ip_address
-      t.timestamp :start_time
-      t.timestamp :end_time
-      t.string :validation_hash
-      t.string :worker_id
+      t.text :comments
       t.references :turkee_task
 
       t.timestamps

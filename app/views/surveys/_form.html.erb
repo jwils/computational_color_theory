@@ -1,5 +1,6 @@
 <%= turkee_form_for(@survey, params) do |f| %>
     <p>If you have any comments about the survey please enter them below</p>
+    <p><%= f.hidden_field :id, :value => @survey.id.to_s %></p>
     <p><%= f.text_area :comments, :disabled => @disabled %></p>
     <p><%= f.submit 'Submit', :disabled => @disabled %></p>
 <% end %>

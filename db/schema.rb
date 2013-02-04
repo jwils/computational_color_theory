@@ -49,13 +49,10 @@ ActiveRecord::Schema.define(:version => 20130204031901) do
     t.integer  "ruler_height"
     t.integer  "ruler_width"
     t.string   "ip_address"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "validation_hash"
-    t.string   "worker_id"
+    t.text     "comments"
     t.integer  "turkee_task_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "surveys", ["turkee_task_id"], :name => "index_surveys_on_turkee_task_id"

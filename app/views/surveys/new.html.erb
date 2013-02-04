@@ -21,9 +21,9 @@
     <br />
     <br />
     <p> About how wide and tall is the above retangle <i> in inches? </i> </p>
-    width: <input type="number" min="0" disabled="<%=@disabled%>" name="width" id="ruler-width" style="width:50px;" > inches <br/>
-    height: <input type="number" min="0" disabled="<%=@disabled%>" name="height" id="ruler-height" style="width:50px;"> inches <br/>
-    <button id="startQuiz" class="btn" disabled="<%=@disabled%>">Start the survey</button>
+    width: <input type="number" min="0" <%= if @disabled then "disabled" end%> name="width" id="ruler-width" style="width:50px;" > inches <br/>
+    height: <input type="number" min="0" <%= if @disabled then "disabled" end%> name="height" id="ruler-height" style="width:50px;"> inches <br/>
+    <button id="startQuiz" class="btn" <%= if @disabled then "disabled" end%>>Start the survey</button>
   </div>
   <% unless @disabled %>
   <div id="completion" style="display: none;">
