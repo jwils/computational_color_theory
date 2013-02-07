@@ -14,6 +14,16 @@ Turkee::TurkeeTask.class_eval do
     logger.error(param_hash)
     logger.error(param_hash[model.to_s.underscore]["id"])
     m = model.find(param_hash[model.to_s.underscore]["id"])
+    param_hash[model.to_s.underscore].delete("id")
+    responses = []
+    JSON(param_hash[model.to_s.underscore]["responses"]).each do |response|
+      responses << Response.create do |r|
+        r.survey = m
+        r.question_id = response["question_id"]
+        r.chosen_image = response["chosen_image"]
+      end
+    end
+    param_hash[model.to_s.underscore]["responses"] = responses
     m.update_attributes(param_hash[model.to_s.underscore])
     m
   end

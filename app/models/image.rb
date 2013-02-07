@@ -1,6 +1,6 @@
 class Image < ActiveRecord::Base
   attr_accessible :image_name
-  has_many :questions
+  has_mÎany :questions
 
 
   def image_url

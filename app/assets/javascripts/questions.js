@@ -8,9 +8,10 @@ function startQuiz() {
     closeInstructions();
     var rulerWidth = $("#ruler-width").val();
     var rulerHeight = $("#ruler-height").val();
+
+    $("#survey_ruler_width").val(JSON.stringify($("#ruler-width").val()));
+    $("#survey_ruler_height").val(JSON.stringify($("#ruler_height").val()));
     recordMeasurement(rulerWidth, rulerHeight);
-    var mturk_id = $("#mturk-id").val();
-    response_json['mturkid'] = mturk_id;
 }
 
 function recordMeasurement(width, height) {
@@ -25,7 +26,7 @@ function closeInstructions() {
 
     nextQuestion(questions[question -1].img1,
     questions[question -1].img2);
-    quiz_id = data['quiz_id']
+    //quiz_id = data['quiz_id']
 }
 
 function imgClick() {
@@ -33,12 +34,12 @@ function imgClick() {
         return;
     }
     if ($(this).attr("class") == "answer1") {
-        answer_json.push({id: questions[question -1].id,
-        answer : "img1"});
+        image = "img1"
     } else {
-        answer_json.push({ id : questions[question -1].id,
-        answer : "img2"});
+        image = "img2"
     }
+    answer_json.push({ question_id : questions[question -1].id,
+        chosen_image : image});
 
     question = question + 1;
     if (question > questions.length) {
@@ -48,8 +49,9 @@ function imgClick() {
       $("div#qHolder").hide()
       $("div#completion").show();
       $("button").hide();
-      console.log(JSON.stringify(response_json));
-      $.ajax({
+      $("#survey_responses").val(JSON.stringify(answer_json));
+
+/*      $.ajax({
       type: 'POST',
       url: "/answers/",
       data: JSON.stringify(response_json),
@@ -58,7 +60,7 @@ function imgClick() {
         $('#response_code').html(data['resp_code']);
       },
         failure: function(data) {alert('error');}
-      });
+      });*/
         return;
       } else {
         nextQuestion(questions[question -1].img1,

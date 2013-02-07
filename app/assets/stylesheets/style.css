@@ -1,7 +1,6 @@
 .navbar-inverse .nav .active > a, 
 .navbar-inverse .nav .active > a:hover, 
 .navbar-inverse .nav .active > a:focus {
-	background: url(../img/highlighted.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-position-y: 25px;
@@ -13,7 +12,7 @@ body {
 }
 
 img#image {
-	
+
 }
 
 
