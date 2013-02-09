@@ -20,7 +20,7 @@ function recordMeasurement(width, height) {
 }
 
 function closeInstructions() {
-    $("div#qHolder").show()
+    $("div#qHolder").show();
     $("div#instructions").hide();
     questions = $('#qHolder').data('questions');
 
@@ -46,21 +46,10 @@ function imgClick() {
         response_json['answers'] = answer_json;
         response_json['quiz_id'] = quiz_id;
       //Submit results
-      $("div#qHolder").hide()
+      $("div#qHolder").hide();
       $("div#completion").show();
       $("button").hide();
       $("#survey_responses").val(JSON.stringify(answer_json));
-
-/*      $.ajax({
-      type: 'POST',
-      url: "/answers/",
-      data: JSON.stringify(response_json),
-      dataType: 'json',
-      success: function(data) {
-        $('#response_code').html(data['resp_code']);
-      },
-        failure: function(data) {alert('error');}
-      });*/
         return;
       } else {
         nextQuestion(questions[question -1].img1,
