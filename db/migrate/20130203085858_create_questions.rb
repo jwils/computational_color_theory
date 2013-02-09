@@ -9,5 +9,6 @@ class CreateQuestions < ActiveRecord::Migration
     end
     add_index :questions, :img1_id
     add_index :questions, :img2_id
+    add_index :questions, :experiment_id
   end
 end

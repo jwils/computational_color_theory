@@ -5,7 +5,6 @@ class CreateExperiments < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :experiments, :question_id
     add_index :experiments, :turkee_tasks_id
   end
 end

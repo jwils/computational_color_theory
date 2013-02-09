@@ -14,13 +14,11 @@
 ActiveRecord::Schema.define(:version => 20130209062903) do
 
   create_table "experiments", :force => true do |t|
-    t.integer  "question_id"
     t.integer  "turkee_tasks_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "experiments", ["question_id"], :name => "index_experiments_on_question_id"
   add_index "experiments", ["turkee_tasks_id"], :name => "index_experiments_on_turkee_tasks_id"
 
   create_table "images", :force => true do |t|
@@ -32,26 +30,25 @@ ActiveRecord::Schema.define(:version => 20130209062903) do
   create_table "questions", :force => true do |t|
     t.integer  "img1_id"
     t.integer  "img2_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "experiment_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
+  add_index "questions", ["experiment_id"], :name => "index_questions_on_experiment_id"
   add_index "questions", ["img1_id"], :name => "index_questions_on_img1_id"
   add_index "questions", ["img2_id"], :name => "index_questions_on_img2_id"
-
-  create_table "questions_surveys", :id => false, :force => true do |t|
-    t.integer "survey_id"
-    t.integer "question_id"
-  end
 
   create_table "responses", :force => true do |t|
     t.integer  "survey_id"
     t.integer  "question_id"
+    t.integer  "experiment_id"
     t.string   "chosen_image"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
+  add_index "responses", ["experiment_id"], :name => "index_responses_on_experiment_id"
   add_index "responses", ["question_id"], :name => "index_responses_on_question_id"
   add_index "responses", ["survey_id"], :name => "index_responses_on_survey_id"
 
@@ -61,10 +58,12 @@ ActiveRecord::Schema.define(:version => 20130209062903) do
     t.string   "ip_address"
     t.text     "comments"
     t.integer  "turkee_task_id"
+    t.integer  "experiment_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
 
+  add_index "surveys", ["experiment_id"], :name => "index_surveys_on_experiment_id"
   add_index "surveys", ["turkee_task_id"], :name => "index_surveys_on_turkee_task_id"
 
   create_table "taggings", :force => true do |t|

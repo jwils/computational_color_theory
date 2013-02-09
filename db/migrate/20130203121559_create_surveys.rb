@@ -11,5 +11,6 @@ class CreateSurveys < ActiveRecord::Migration
       t.timestamps
     end
     add_index :surveys, :turkee_task_id
+    add_index :surveys, :experiment_id
   end
 end
