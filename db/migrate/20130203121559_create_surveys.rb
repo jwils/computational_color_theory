@@ -6,6 +6,7 @@ class CreateSurveys < ActiveRecord::Migration
       t.string :ip_address
       t.text :comments
       t.references :turkee_task
+      t.references :experiment
 
       t.timestamps
     end

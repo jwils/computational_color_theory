@@ -3,6 +3,7 @@ class CreateResponses < ActiveRecord::Migration
     create_table :responses do |t|
       t.references :survey
       t.references :question
+      t.references :experiment
       t.string :chosen_image
 
       t.timestamps
@@ -10,5 +11,6 @@ class CreateResponses < ActiveRecord::Migration
 
     add_index :responses, :survey_id
     add_index :responses, :question_id
+    add_index :responses, :experiment_id
   end
 end

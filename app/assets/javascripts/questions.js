@@ -74,8 +74,8 @@ function imgClick() {
     $("img.answer2").attr("disabled", true);
 
     $("div#qHolder").fadeOut(1000, function(){
-        $("img.answer1").attr("src",  image1.image_url);
-        $("img.answer2").attr("src",  image2.image_url);
+        $("img.answer1").attr("src", '/exp_img/' + image1.image_url);
+        $("img.answer2").attr("src", '/exp_img/' + image2.image_url);
         prepareForNextQuestion();
     });
   }

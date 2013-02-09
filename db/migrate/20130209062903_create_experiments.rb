@@ -1,7 +1,6 @@
 class CreateExperiments < ActiveRecord::Migration
   def change
     create_table :experiments do |t|
-      t.references :question
       t.references :turkee_tasks
 
       t.timestamps

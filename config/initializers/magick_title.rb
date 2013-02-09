@@ -19,6 +19,7 @@ MagickTitle.options[:height] = 500 - 2*border_height
 MagickTitle.options[:font_size] = 30
 MagickTitle.options[:background_alpha] = '100'
 MagickTitle.options[:font_path] = Proc.new{ File.join MagickTitle.root, "fonts" }
+MagickTitle.options[:destination] = Proc.new{ File.join MagickTitle.root, "public/exp_img" }
 
 BORDER = "#{border_width}x#{border_height}"
 

@@ -34,16 +34,10 @@ Image.create(:id => 8,
              :image_name => '1fdb4a1f7f_Arial_hsl0-0-90_24pt_hsl0-0-100.png',
              :tag_list => 'sanity_check, bw_lightness, bg_hsl_0_0_90, fg_hsl_0_0_100, least_readable')
 
-Image.all(:order => :id).each do |image1|
-  Image.all(:order => :id).each do |image2|
-    unless image1 == image2
-      Question.create(:img1 => image1, :img2 => image2, :tag_list => "sanity_check, exp1")
-    end
-  end
-end
+Question.create_questions_from_tags('sanity_check', 'sanity_check, exp1')
 
 experiment = Experiment.create()
-experiment.tag_list = "sanity_check_exp1, exp1, sanity_check"
+experiment.tag_list = "exp1, sanity_check"
 experiment.questions = Question.tagged_with('sanity_check')
 experiment.save
 
