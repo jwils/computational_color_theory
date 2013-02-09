@@ -2,6 +2,7 @@ class CreateTurkeeTasks < ActiveRecord::Migration
   
   def self.up
     create_table "turkee_tasks" do |t|
+      t.references :experiment
       t.string   "hit_url"
       t.boolean  "sandbox"
       t.string   "task_type"
@@ -16,6 +17,7 @@ class CreateTurkeeTasks < ActiveRecord::Migration
       t.boolean  "complete"
       t.timestamps
     end
+    add_index "turkee_tasks", :experiment_id
   end
 
   def self.down

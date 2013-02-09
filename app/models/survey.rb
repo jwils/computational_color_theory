@@ -1,7 +1,6 @@
 class Survey < ActiveRecord::Base
   belongs_to :turkee_task, :class_name => Turkee::TurkeeTask
   has_many :questions, :through => :experiments
-
   has_many :responses
   belongs_to :experiment
 

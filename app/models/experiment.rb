@@ -1,6 +1,6 @@
 class Experiment < ActiveRecord::Base
   has_many :questions
-  belongs_to :turkee_tasks, :class_name => 'Turkee::TurkeeTask'
+  has_many :turkee_tasks, :class_name => 'Turkee::TurkeeTask'
   has_many :responses
   has_many :surveys
   acts_as_taggable

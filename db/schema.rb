@@ -14,12 +14,9 @@
 ActiveRecord::Schema.define(:version => 20130209062903) do
 
   create_table "experiments", :force => true do |t|
-    t.integer  "turkee_tasks_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "experiments", ["turkee_tasks_id"], :name => "index_experiments_on_turkee_tasks_id"
 
   create_table "images", :force => true do |t|
     t.string   "image_name"
@@ -96,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20130209062903) do
   add_index "turkee_imported_assignments", ["turkee_task_id"], :name => "index_turkee_imported_assignments_on_turkee_task_id"
 
   create_table "turkee_tasks", :force => true do |t|
+    t.integer  "experiment_id"
     t.string   "hit_url"
     t.boolean  "sandbox"
     t.string   "task_type"
@@ -113,5 +111,7 @@ ActiveRecord::Schema.define(:version => 20130209062903) do
     t.integer  "hit_duration"
     t.integer  "expired"
   end
+
+  add_index "turkee_tasks", ["experiment_id"], :name => "index_turkee_tasks_on_experiment_id"
 
 end
