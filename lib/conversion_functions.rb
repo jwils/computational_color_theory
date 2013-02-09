@@ -1,4 +1,4 @@
-module CONVERSION_FUNCTIONS
+module ConversionFunctions
   def xyz_to_rgb(xyz)
     #  convert XYZ array or list to RGB array
     var_X = xyz[0]/100.0
@@ -19,7 +19,7 @@ module CONVERSION_FUNCTIONS
     else
       var_G = 12.92 * var_G
     end
-    if var_B > 0.0031308:
+    if var_B > 0.0031308
         var_B = 1.055 * (Math.pow(var_B,(1/2.4))) - 0.055
     else
       var_B = 12.92 * var_B

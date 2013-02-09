@@ -11,9 +11,4 @@ class CreateSurveys < ActiveRecord::Migration
     end
     add_index :surveys, :turkee_task_id
   end
-
-  create_table 'questions_surveys', :id => false do |t|
-    t.column :survey_id, :integer
-    t.column :question_id, :integer
-  end
 end

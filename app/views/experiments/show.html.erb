@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Question:</b>
+  <%= @experiment.question %>
+</p>
+
+<p>
+  <b>Turkee tasks:</b>
+  <%= @experiment.turkee_tasks %>
+</p>
+
+
+<%= link_to 'Edit', edit_experiment_path(@experiment) %> |
+<%= link_to 'Back', experiments_path %>

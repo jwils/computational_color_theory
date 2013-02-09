@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  question: 
+  turkee_tasks: 
+
+two:
+  question: 
+  turkee_tasks: 

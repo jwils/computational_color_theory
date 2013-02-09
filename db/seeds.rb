@@ -37,11 +37,15 @@ Image.create(:id => 8,
 Image.all(:order => :id).each do |image1|
   Image.all(:order => :id).each do |image2|
     unless image1 == image2
-      Question.create(:img1 => image1, :img2 => image2, :tag_list => "sanity_check_exp1")
+      Question.create(:img1 => image1, :img2 => image2, :tag_list => "sanity_check, exp1")
     end
   end
 end
 
+experiment = Experiment.create()
+experiment.tag_list = "sanity_check_exp1, exp1, sanity_check"
+experiment.questions = Question.tagged_with('sanity_check')
+experiment.save
 
 survey = Survey.new
 current_id = 0
@@ -52,6 +56,7 @@ CSV.foreach('db/prelim_data.csv', { :headers => true }) do |row|
       survey.ruler_height= row[1].to_i
       survey.ruler_width= row[2].to_i
       survey.save
+      experiment.survey = survey
     end
 
     question = Question.find(row[3].to_i - 112)

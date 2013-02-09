@@ -3,6 +3,7 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.references :img1
       t.references :img2
+      t.references :experiment
 
       t.timestamps
     end

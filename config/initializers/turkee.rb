@@ -9,6 +9,9 @@ RTurk.setup(AWSACCESSKEYID, AWSSECRETACCESSKEY, :sandbox => (Rails.env == 'produ
 
 
 Turkee::TurkeeTask.class_eval do
+  has_one :experiment
+  has_many :questions, :through => :experiments
+
   def self.save_imported_values(model, param_hash)
     logger ||= Logger.new($stderr)
     logger.error(param_hash)
