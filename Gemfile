@@ -13,6 +13,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'sqlite3'
+end
+
 gem 'turkee'
 gem 'jquery-rails'
 gem 'acts-as-taggable-on'

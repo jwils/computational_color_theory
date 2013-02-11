@@ -7,8 +7,8 @@ class Experiment < ActiveRecord::Base
 
 
   def randomize_questions
-    questions = questions.order("RANDOM()").compact
-    questions_2 = questions.order("RANDOM()")
+    questions = self.questions.order("RANDOM()").compact
+    questions_2 = self.questions.order("RANDOM()")
     questions_2.reject do |question|
       if questions.include?(question.matching_question)
         questions.delete(question)

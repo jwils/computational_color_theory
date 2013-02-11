@@ -1,9 +1,9 @@
 <%= turkee_form_for(@survey, params) do |f| %>
     <p>If you have any comments about the survey please enter them below</p>
-    <p><%= f.hidden_field :id, :value => @survey.id.to_s %></p>
-    <p><%= f.hidden_field :responses %> </p>
-    <p><%= f.hidden_field :ruler_width %> </p>
-    <p><%= f.hidden_field :ruler_height %> </p>
-    <p><%= f.text_area :comments, :disabled => @disabled %></p>
+    <%= f.hidden_field :id, :value => @survey.id.to_s %>
+    <%= f.hidden_field :responses %>
+    <%= f.hidden_field :ruler_width %>
+    <%= f.hidden_field :ruler_height %>
+    <p><%= f.text_area :comments, :disabled => @disabled,  :rows=>10 %> </p>
     <p><%= f.submit 'Submit', :disabled => @disabled %></p>
 <% end %>

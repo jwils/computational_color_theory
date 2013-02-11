@@ -1,12 +1,12 @@
 <div class="container visible-desktop">
   <%= render 'instructions' %>
   <% unless @disabled %>
-  <%=  render 'questions/survey_questions', :questions => @questions %>
+  <%=  render 'questions/survey_questions' %>
   <br />
-  <div id="completion" style="display: none;">
-    <h2> End </h2>
-    <p>Thank you for your participation. Data acquired here will be used to better determine the readability of colored text</p>
-    <%= render 'form' %>
-   </div>
+      <div id="completion" style="display: none;">
+        <h2> End </h2>
+        <p>Thank you for your participation. Data acquired here will be used to better determine the readability of colored text</p>
+        <%= render 'form' %>
+      </div>
   <% end %>
 </div>

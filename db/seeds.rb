@@ -63,8 +63,8 @@ CSV.foreach('db/prelim_data.csv', { :headers => true }) do |row|
       survey = Survey.new
       survey.ruler_height= row[1].to_i
       survey.ruler_width= row[2].to_i
-      survey.save
       survey.experiment = experiment
+      survey.save
     end
 
     question = Question.find(row[3].to_i - 112)
@@ -72,5 +72,6 @@ CSV.foreach('db/prelim_data.csv', { :headers => true }) do |row|
     answer.chosen_image="img" +row[6]
     answer.question=question
     answer.survey=survey
+    answer.experiment = experiment
     answer.save
 end

@@ -6,7 +6,8 @@ class Image < ActiveRecord::Base
   acts_as_taggable
 
   def image_url
-    ActionController::Base.new.view_context.asset_path(image_name)
+    #ActionController::Base.new.view_context.asset_path(image_name)
+    image_name
   end
 
   def self.find_or_create_by_cielch(cielch_fg,cielch_bg, hsh = {})

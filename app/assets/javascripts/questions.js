@@ -8,9 +8,8 @@ function startQuiz() {
     closeInstructions();
     var rulerWidth = $("#ruler-width").val();
     var rulerHeight = $("#ruler-height").val();
-
-    $("#survey_ruler_width").val(JSON.stringify($("#ruler-width").val()));
-    $("#survey_ruler_height").val(JSON.stringify($("#ruler_height").val()));
+    $("#survey_ruler_width").val($("#ruler-width").val());
+    $("#survey_ruler_height").val($("#ruler-height").val());
     recordMeasurement(rulerWidth, rulerHeight);
 }
 
