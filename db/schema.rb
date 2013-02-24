@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130209062903) do
+ActiveRecord::Schema.define(:version => 20130222203041) do
 
   create_table "experiments", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(:version => 20130209062903) do
 
   create_table "images", :force => true do |t|
     t.string   "image_name"
+    t.string   "color_type"
+    t.integer  "val1"
+    t.integer  "val2"
+    t.integer  "val3"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -48,6 +52,18 @@ ActiveRecord::Schema.define(:version => 20130209062903) do
   add_index "responses", ["experiment_id"], :name => "index_responses_on_experiment_id"
   add_index "responses", ["question_id"], :name => "index_responses_on_question_id"
   add_index "responses", ["survey_id"], :name => "index_responses_on_survey_id"
+
+  create_table "results", :force => true do |t|
+    t.integer  "experiment_id"
+    t.integer  "image_id"
+    t.integer  "rank"
+    t.float    "value"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "results", ["experiment_id"], :name => "index_results_on_experiment_id"
+  add_index "results", ["image_id"], :name => "index_results_on_image_id"
 
   create_table "surveys", :force => true do |t|
     t.integer  "ruler_height"

@@ -14,8 +14,8 @@ group :assets do
 end
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'sqlite3'
 end
 
@@ -23,3 +23,5 @@ gem 'turkee'
 gem 'jquery-rails'
 gem 'acts-as-taggable-on'
 gem 'magick_title', '>= 0.2.0'
+gem 'carrierwave'
+gem 'simple_form'

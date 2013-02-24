@@ -28,17 +28,18 @@ class SurveysController < ApplicationController
 
     @survey = Survey.new
     task = Turkee::TurkeeTask.find_by_hit_id(params[:hitId]) rescue nil
-    @survey.experiment = Experiment.first
-    @survey_questions = @survey.experiment.randomize_questions
 
-    @question_count = @survey_questions.count
     unless @disabled
+      @survey.experiment = Experiment.first
       @survey.turkee_task   =  task
-      @question = @survey_questions.to_json( :only => [:id, :img1, :img2],
-          :include => {:img1  => {:only => :id, :methods => [:image_url]},
-                       :img2  => {:only => :id, :methods => [:image_url]}
-      } )
-      @survey.save
+      questions = @survey.experiment.randomize_questions
+      @questions = questions.to_json(:only => [:id, :img1, :img2],
+                                     :include => {
+                                         :img1  => {:only => :id,
+                                                    :methods => [:image_url]},
+                                         :img2  => {:only => :id,
+                                                    :methods => [:image_url]}
+                                    })
     end
 
     respond_to do |format|

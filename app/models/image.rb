@@ -2,13 +2,13 @@ require 'conversion_functions'
 class Image < ActiveRecord::Base
   include ConversionFunctions
   attr_accessible :image_name
+  belongs_to :fg_color, :class_name => Color, :foreign_key => :fg_color_id
+  belongs_to :bg_color, :class_name => Color, :foreign_key => :bg_color_id
+
+  mount_uploader :image_name, ImageUploader
+
   has_many :questions
   acts_as_taggable
-
-  def image_url
-    #ActionController::Base.new.view_context.asset_path(image_name)
-    image_name
-  end
 
   def self.find_or_create_by_cielch(cielch_fg,cielch_bg, hsh = {})
     rgb_fg = cielch_to_rgb(cielch_fg)
