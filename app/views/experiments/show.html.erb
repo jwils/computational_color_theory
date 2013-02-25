@@ -1,13 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Question:</b>
-  <%= #@experiment.name %>
+  <b>Name:</b>
+  <%= @experiment.name %>
 </p>
 
 <p>
-  <b>Turkee tasks:</b>
-  <%= @experiment.turkee_tasks %>
+  <b>Images:</b><br />
+  <% @experiment.images.each do |x| %>
+    <%= x.image_name_tag %><br /><br />
+  <% end  %>
 </p>
 
 

@@ -41,10 +41,11 @@ class ExperimentsController < ApplicationController
   # POST /experiments.json
   def create
     images = params[:experiment][:image_ids].collect {|x| Image.find(x) if x.length > 0}.compact
-
+    params[:experiment].delete :image_ids
     questions = Question.create_questions_from_images(images)
 
-    @experiment = Experiment.new
+    @experiment = Experiment.create(params[:experiment])
+    @experiment.questions = questions
 
     respond_to do |format|
       if @experiment.save

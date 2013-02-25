@@ -4,7 +4,7 @@ class CreateResponses < ActiveRecord::Migration
       t.references :survey
       t.references :question
       t.string :chosen_image
-
+      t.integer :direction
       t.timestamps
     end
 

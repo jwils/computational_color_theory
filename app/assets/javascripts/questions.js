@@ -38,7 +38,7 @@ function imgClick() {
         image = "img2"
     }
     answer_json.push({ question_id : questions[question -1].id,
-        chosen_image : image});
+        chosen_image : image, d : questions[question -1].d});
 
     question = question + 1;
     if (question > questions.length) {
@@ -73,8 +73,8 @@ function imgClick() {
     $("img.answer2").attr("disabled", true);
 
     $("div#qHolder").fadeOut(1000, function(){
-        $("img.answer1").attr("src",  String(image1.image_name.url));
-        $("img.answer2").attr("src", String(image2.image_name.url));
+        $("img.answer1").attr("src",  String(image1.image_name));
+        $("img.answer2").attr("src", String(image2.image_name));
         prepareForNextQuestion();
     });
   }

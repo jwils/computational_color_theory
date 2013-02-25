@@ -34,11 +34,7 @@ class SurveysController < ApplicationController
       @survey.experiment = Experiment.first
       @survey.turkee_task   =  task
       questions = @survey.experiment.randomize_questions
-      @questions = questions.to_json(:only => [:id, :img1, :img2],
-                                     :include => {
-                                         :img1  => {:only => [:id, :image_name]},
-                                         :img2  => {:only => [:id, :image_name]}
-                                    })
+      @questions =  questions.collect {|x| x.randomize_to_json}.to_json
     end
 
     respond_to do |format|

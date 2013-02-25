@@ -1,7 +1,7 @@
 class Response < ActiveRecord::Base
   belongs_to :survey
   belongs_to :question
-  attr_accessible :chosen_image
+  attr_accessible :chosen_image, :direction, :survey_id, :question_id
   acts_as_taggable
 
   def experiment

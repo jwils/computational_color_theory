@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  experiment: 
+  image: 
+  rank: 1
+
+two:
+  experiment: 
+  image: 
+  rank: 1

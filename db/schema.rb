@@ -13,19 +13,32 @@
 
 ActiveRecord::Schema.define(:version => 20130222203041) do
 
-  create_table "experiments", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "images", :force => true do |t|
-    t.string   "image_name"
+  create_table "colors", :force => true do |t|
     t.string   "color_type"
     t.integer  "val1"
     t.integer  "val2"
     t.integer  "val3"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "experiments", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "experiments_questions", :id => false, :force => true do |t|
+    t.integer "experiment_id"
+    t.integer "question_id"
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "image_name"
+    t.integer  "fg_color_id"
+    t.integer  "bg_color_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "questions", :force => true do |t|
@@ -43,21 +56,19 @@ ActiveRecord::Schema.define(:version => 20130222203041) do
   create_table "responses", :force => true do |t|
     t.integer  "survey_id"
     t.integer  "question_id"
-    t.integer  "experiment_id"
     t.string   "chosen_image"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
-  add_index "responses", ["experiment_id"], :name => "index_responses_on_experiment_id"
   add_index "responses", ["question_id"], :name => "index_responses_on_question_id"
   add_index "responses", ["survey_id"], :name => "index_responses_on_survey_id"
 
   create_table "results", :force => true do |t|
     t.integer  "experiment_id"
     t.integer  "image_id"
-    t.integer  "rank"
-    t.float    "value"
+    t.float    "psi"
+    t.float    "noise"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

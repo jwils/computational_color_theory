@@ -11,10 +11,10 @@ class Survey < ActiveRecord::Base
     resp = []
     JSON(responses).each do |response|
       resp << Response.create do |r|
-        r.survey = self
-        r.experiment = self.experiment
+        r.survey_id = self.id
         r.question_id = response["question_id"]
         r.chosen_image = response["chosen_image"]
+        r.direction =  response["d"]
       end
     end
   end
