@@ -72,7 +72,7 @@ experiment.save
 
 survey = Survey.new
 current_id = 0
-CSV.foreach('db/prelim_data.csv', { :headers => true }) do |row|
+CSV.foreach(File.join(Rails.root, 'db/prelim_data.csv'), { :headers => true }) do |row|
     if current_id != row[0].to_i
       current_id = row[0].to_i
       survey = Survey.new
