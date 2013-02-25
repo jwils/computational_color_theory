@@ -1,14 +1,11 @@
 class Survey < ActiveRecord::Base
+  belongs_to :turkee_task, :class_name => Turkee::TurkeeTask
   has_many :responses
   belongs_to :experiment
 
   attr_accessible :ip_address, :ruler_height,
                   :ruler_width, :comments, :responses,
-                  :experiment_id, :turkee_task_id
-
-  def turkee_task
-    Turkee::TurkeeTask.find(turkee_task_id)
-  end
+                  :experiment_id, :turkee_task_id, :responses_raw
 
   def responses_raw=(responses)
     resp = []
@@ -21,9 +18,5 @@ class Survey < ActiveRecord::Base
         r.reversed =  response["d"]
       end
     end
-  end
-
-  def responses_raww
-
   end
 end

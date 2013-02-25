@@ -38,7 +38,7 @@ class SurveysController < ApplicationController
       end
 
       @survey.experiment = experiment
-      @survey.turkee_task   =  task
+      @survey.turkee_task_id   =  task.id
       questions = @survey.experiment.randomize_questions
       @questions =  questions.collect {|x| x.randomize_to_json}.to_json
     end
