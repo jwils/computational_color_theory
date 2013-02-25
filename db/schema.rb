@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20130222203041) do
     t.integer  "survey_id"
     t.integer  "question_id"
     t.string   "chosen_image"
+    t.integer  "reversed"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

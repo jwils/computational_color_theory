@@ -14,7 +14,7 @@ class Survey < ActiveRecord::Base
         r.survey_id = self.id
         r.question_id = response["question_id"]
         r.chosen_image = response["chosen_image"]
-        r.direction =  response["d"]
+        r.reversed =  response["d"]
       end
     end
   end
