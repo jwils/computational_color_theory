@@ -2,16 +2,10 @@
 
 <table>
   <tr>
-    <th>Ruler height</th>
-    <th>Ruler width</th>
-    <th>Ip address</th>
-    <th>Start time</th>
-    <th>End time</th>
-    <th>Validation hash</th>
-    <th>Worker</th>
-    <th>Turkee task</th>
-    <th></th>
-    <th></th>
+    <th>R height</th>
+    <th>R width</th>
+    <th>Ip</th>
+    <th>Response Count</th>
     <th></th>
   </tr>
 
@@ -20,14 +14,8 @@
     <td><%= survey.ruler_height %></td>
     <td><%= survey.ruler_width %></td>
     <td><%= survey.ip_address %></td>
-    <td><%= survey.start_time %></td>
-    <td><%= survey.end_time %></td>
-    <td><%= survey.validation_hash %></td>
-    <td><%= survey.worker_id %></td>
-    <td><%= survey.turkee_task %></td>
+    <td><%= survey.responses.count %></td>
     <td><%= link_to 'Show', survey %></td>
-    <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-    <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
