@@ -1,12 +1,14 @@
 class Survey < ActiveRecord::Base
-  belongs_to :turkee_task, :class_name => Turkee::TurkeeTask
   has_many :responses
   belongs_to :experiment
 
-  attr_accessible :end_time, :ip_address, :ruler_height,
-                  :ruler_width, :worker_id, :comments, :responses,
-                  :experiment_id, :responses_raw, :turkee_task_id
+  attr_accessible :end_time, :ip_address, :ruler_height, 
+		  :turkee_task_id, :ruler_width, :comments, :responses,
+                  :experiment_id
 
+  def turkee_task
+    Turkee::TurkeeTask.find(turkee_task_id)
+  end
   def responses_raw=(responses)
     resp = []
     self.save
