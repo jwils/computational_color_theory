@@ -29,9 +29,12 @@ class SurveysController < ApplicationController
 
     @survey = Survey.new
     task = Turkee::TurkeeTask.find_by_hit_id(params[:hitId]) rescue nil
-
+    experiment = task.experiment
+    if experiment.nil?
+      experiment = Experiment.last
+    end
     unless @disabled
-      @survey.experiment = Experiment.first
+      @survey.experiment = experiment
       @survey.turkee_task   =  task
       questions = @survey.experiment.randomize_questions
       @questions =  questions.collect {|x| x.randomize_to_json}.to_json
