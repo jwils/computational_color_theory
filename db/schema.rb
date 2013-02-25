@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222203041) do
+ActiveRecord::Schema.define(:version => 20130225232544) do
 
   create_table "colors", :force => true do |t|
     t.string   "color_type"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130222203041) do
     t.integer  "bg_color_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "font_size"
   end
 
   create_table "questions", :force => true do |t|
@@ -110,13 +111,15 @@ ActiveRecord::Schema.define(:version => 20130222203041) do
 
   create_table "turkee_imported_assignments", :force => true do |t|
     t.string   "assignment_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "turkee_task_id"
     t.string   "worker_id"
     t.integer  "result_id"
   end
 
   add_index "turkee_imported_assignments", ["assignment_id"], :name => "index_turkee_imported_assignments_on_assignment_id", :unique => true
+  add_index "turkee_imported_assignments", ["turkee_task_id"], :name => "index_turkee_imported_assignments_on_turkee_task_id"
 
   create_table "turkee_tasks", :force => true do |t|
     t.integer  "experiment_id"

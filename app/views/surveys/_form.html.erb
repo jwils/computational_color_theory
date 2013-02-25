@@ -5,6 +5,7 @@
     <input id="survey_responses_raw" name="survey[responses_raw]" type="hidden" value="[]" />
     <%= f.hidden_field :ruler_width %>
     <%= f.hidden_field :ruler_height %>
+    <%= f.hidden_field :ip_address %>
     <p><%= f.text_area :comments, :disabled => @disabled,  :rows=>10 %> </p>
     <p><%= f.submit 'Submit', :disabled => @disabled %></p>
 <% end %>

@@ -39,6 +39,7 @@ class SurveysController < ApplicationController
 
       @survey.experiment = experiment
       @survey.turkee_task_id   =  task.id
+      @survey.ip_address = request.remote_ip
       questions = @survey.experiment.randomize_questions
       @questions =  questions.collect {|x| x.randomize_to_json}.to_json
     end
