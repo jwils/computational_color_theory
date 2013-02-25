@@ -12,6 +12,8 @@
   <% end %>
     <%= f.input :tag_list %> <br />
     <%= f.input :image_name %><br />
+    <%= f.input :font_size %>
+
     <h3>Foreground color</h3>
     <%= f.fields_for :fg_color do |fg_color| %>
         <%= fg_color.input :color_type %>
