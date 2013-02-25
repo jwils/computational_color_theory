@@ -2,22 +2,20 @@
 
 <table>
   <tr>
-    <th>Quiz</th>
+    <th>Survey</th>
     <th>Question</th>
     <th>Chosen image</th>
-    <th></th>
-    <th></th>
+    <th>Reversed?</th>
     <th></th>
   </tr>
 
 <% @responses.each do |response| %>
   <tr>
-    <td><%= response.Quiz %></td>
-    <td><%= response.Question %></td>
+    <td><%= response.survey_id %></td>
+    <td><%= link_to "Question#{response.question_id}", question_path(response.question) %></td>
     <td><%= response.chosen_image %></td>
+    <td><%= response.reversed %></td>
     <td><%= link_to 'Show', response %></td>
-    <td><%= link_to 'Edit', edit_response_path(response) %></td>
-    <td><%= link_to 'Destroy', response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

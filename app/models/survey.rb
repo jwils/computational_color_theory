@@ -3,8 +3,8 @@ class Survey < ActiveRecord::Base
   has_many :responses
   belongs_to :experiment
 
-  attr_accessible :end_time, :ip_address, :ruler_height,
-                  :ruler_width, :worker_id, :comments, :responses,
+  attr_accessible :ip_address, :ruler_height,
+                  :ruler_width, :comments, :responses,
                   :experiment_id, :responses_raw, :turkee_task_id
 
   def responses_raw=(responses)
