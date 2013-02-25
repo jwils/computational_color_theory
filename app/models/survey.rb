@@ -9,6 +9,7 @@ class Survey < ActiveRecord::Base
 
   def responses_raw=(responses)
     resp = []
+    self.save
     JSON(responses).each do |response|
       resp << Response.create do |r|
         r.survey_id = self.id

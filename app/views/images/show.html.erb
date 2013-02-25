@@ -2,9 +2,12 @@
 
 <p>
   <b>Image name:</b>
-  <%= @image.image_name %>
+  <%= @image.image_name.file.filename %>
 </p>
-
+  <%= image_tag @image.image_name_url %>
+  <br />
+  <%= @image.tag_list %>
+  <br />
 
 <%= link_to 'Edit', edit_image_path(@image) %> |
 <%= link_to 'Back', images_path %>

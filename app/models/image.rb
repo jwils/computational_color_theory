@@ -3,6 +3,8 @@ class Image < ActiveRecord::Base
   attr_accessible :image_name, :tag_list
   belongs_to :fg_color, :class_name => Color, :foreign_key => :fg_color_id
   belongs_to :bg_color, :class_name => Color, :foreign_key => :bg_color_id
+  accepts_nested_attributes_for :fg_color
+  accepts_nested_attributes_for :bg_color
 
   mount_uploader :image_name, ImageUploader
 

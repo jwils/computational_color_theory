@@ -85,4 +85,9 @@ class ExperimentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def launch_exp
+    experiment = Experiment.find(params[:id])
+    @turkee_task = Turkee::TurkeeTask.new
+  end
 end

@@ -26,6 +26,9 @@ class ImagesController < ApplicationController
   def new
     @image = Image.new
 
+    @image.fg_color = Color.new
+    @image.bg_color = Color.new
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @image }
@@ -40,7 +43,17 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
+    fg_attr = params[:image][:fg_color_attributes]
+    bg_attr = params[:image][:bg_color_attributes]
+
+    fg_color = Color.find_or_create_by_color_type_and_val1_and_val2_and_val3(fg_attr[:color_type], fg_attr[:val1], fg_attr[:val2], fg_attr[:val3])
+    bg_color = Color.find_or_create_by_color_type_and_val1_and_val2_and_val3(bg_attr[:color_type], bg_attr[:val1], bg_attr[:val2], bg_attr[:val3])
+    params[:image].delete :fg_color_attributes
+    params[:image].delete :bg_color_attributes
     @image = Image.new(params[:image])
+    @image.fg_color = fg_color
+    @image.bg_color= bg_color
+
 
     respond_to do |format|
       if @image.save

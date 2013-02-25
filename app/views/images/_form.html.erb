@@ -12,7 +12,24 @@
   <% end %>
     <%= f.input :tag_list %> <br />
     <%= f.input :image_name %><br />
-  <div class="actions">
+    <h3>Foreground color</h3>
+    <%= f.fields_for :fg_color do |fg_color| %>
+        <%= fg_color.input :color_type %>
+        <%= fg_color.input :val1 %>
+        <%= fg_color.input :val2 %>
+        <%= fg_color.input :val3 %>
+    <% end %>
+
+    <h3>Background color</h3>
+    <%= f.fields_for :bg_color do |bg_color| %>
+        <%= bg_color.input :color_type %>
+        <%= bg_color.input :val1 %>
+        <%= bg_color.input :val2 %>
+        <%= bg_color.input :val3 %>
+    <% end %>
+
+
+    <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
