@@ -1,8 +1,13 @@
 class Experiment < ActiveRecord::Base
   has_many :questions
+  has_many :images, :through => :questions, :source => :img1
+  accepts_nested_attributes_for :images
   has_many :turkee_tasks, :class_name => 'Turkee::TurkeeTask'
   has_many :responses
   has_many :surveys
+
+  attr_accessible :name
+
   acts_as_taggable
 
 
@@ -14,5 +19,12 @@ class Experiment < ActiveRecord::Base
         questions.delete(question)
       end
     end
+  end
+
+  def self.new_exp_from_tag(exp)
+      e = Experiment.new
+      e.save
+      e.questions = Question.find_group_by_tags(exp)
+      e.save
   end
 end

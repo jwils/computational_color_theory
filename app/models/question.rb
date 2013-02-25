@@ -1,13 +1,17 @@
 class Question < ActiveRecord::Base
   belongs_to :img1, :class_name => Image, :foreign_key => :img1_id
   belongs_to :img2, :class_name => Image, :foreign_key => :img2_id
-  belongs_to :experiment
+  belongs_to :experiment #many_to_many
   has_many :responses
   attr_accessible  :img1_id, :img2_id
   acts_as_taggable
 
   def matching_question
     Question.find_by_img1_id_and_img2_id(self.img2_id, self.img1_id)
+  end
+
+  def self.create_questions_from_images(images)
+
   end
 
   def self.find_group_by_tags(tags)

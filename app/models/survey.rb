@@ -4,5 +4,22 @@ class Survey < ActiveRecord::Base
   belongs_to :experiment
 
   attr_accessible :end_time, :ip_address, :ruler_height,
-                  :ruler_width, :worker_id, :comments, :responses
+                  :ruler_width, :worker_id, :comments, :responses,
+                  :experiment_id, :responses_raw, :turkee_task_id
+
+  def responses_raw=(responses)
+    resp = []
+    JSON(responses).each do |response|
+      resp << Response.create do |r|
+        r.survey = self
+        r.experiment = self.experiment
+        r.question_id = response["question_id"]
+        r.chosen_image = response["chosen_image"]
+      end
+    end
+  end
+
+  def responses_raww
+
+  end
 end

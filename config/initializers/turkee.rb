@@ -12,6 +12,7 @@ Turkee::TurkeeTask.class_eval do
   has_one :experiment
   has_many :questions, :through => :experiments
 
+=begin
   def self.save_imported_values(model, param_hash)
     logger ||= Logger.new($stderr)
     logger.error(param_hash)
@@ -30,5 +31,6 @@ Turkee::TurkeeTask.class_eval do
     m.update_attributes(param_hash[model.to_s.underscore])
     m
   end
+=end
 end
               

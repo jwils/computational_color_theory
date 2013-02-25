@@ -1,7 +1,6 @@
-require 'conversion_functions'
+#require 'conversion_functions'
 class Image < ActiveRecord::Base
-  include ConversionFunctions
-  attr_accessible :image_name
+  attr_accessible :image_name, :tag_list
   belongs_to :fg_color, :class_name => Color, :foreign_key => :fg_color_id
   belongs_to :bg_color, :class_name => Color, :foreign_key => :bg_color_id
 
@@ -20,5 +19,9 @@ class Image < ActiveRecord::Base
 
   def self.to_hex(rgb)
     return "##{rgb[0].to_s(16)}#{rgb[1].to_s(16)}#{rgb[2].to_s(16)}"
+  end
+
+  def image_name_tag
+    "<img src=\"#{self.image_name_url}\">".html_safe + "Image ID=#{id}" + " " + tag_list
   end
 end

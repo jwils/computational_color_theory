@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
+gem 'json', '1.7.6'
 
 gem 'sqlite3'
 #gem 'mysql2'
@@ -25,3 +26,4 @@ gem 'acts-as-taggable-on'
 gem 'magick_title', '>= 0.2.0'
 gem 'carrierwave'
 gem 'simple_form'
+gem 'nested_form'

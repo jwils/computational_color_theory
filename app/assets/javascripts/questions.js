@@ -48,7 +48,7 @@ function imgClick() {
       $("div#qHolder").hide();
       $("div#completion").show();
       $("button").hide();
-      $("#survey_responses").val(JSON.stringify(answer_json));
+      $("#survey_responses_raw").val(JSON.stringify(answer_json));
         return;
       } else {
         nextQuestion(questions[question -1].img1,
@@ -73,8 +73,8 @@ function imgClick() {
     $("img.answer2").attr("disabled", true);
 
     $("div#qHolder").fadeOut(1000, function(){
-        $("img.answer1").attr("src", '/exp_img/' + image1.image_url);
-        $("img.answer2").attr("src", '/exp_img/' + image2.image_url);
+        $("img.answer1").attr("src",  String(image1.image_name.url));
+        $("img.answer2").attr("src", String(image2.image_name.url));
         prepareForNextQuestion();
     });
   }

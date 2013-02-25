@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+  skip_before_filter :admin_required, :only => :new
   # GET /surveys
   # GET /surveys.json
   def index
@@ -35,10 +36,8 @@ class SurveysController < ApplicationController
       questions = @survey.experiment.randomize_questions
       @questions = questions.to_json(:only => [:id, :img1, :img2],
                                      :include => {
-                                         :img1  => {:only => :id,
-                                                    :methods => [:image_url]},
-                                         :img2  => {:only => :id,
-                                                    :methods => [:image_url]}
+                                         :img1  => {:only => [:id, :image_name]},
+                                         :img2  => {:only => [:id, :image_name]}
                                     })
     end
 
