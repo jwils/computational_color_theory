@@ -29,11 +29,14 @@ class SurveysController < ApplicationController
 
     @survey = Survey.new
     task = Turkee::TurkeeTask.find_by_hit_id(params[:hitId]) rescue nil
-    experiment = task.experiment
-    if experiment.nil?
-      experiment = Experiment.last
-    end
+
     unless @disabled
+      experiment = nil
+      experiment = task.experiment unless task.nil?
+      if experiment.nil?
+        experiment = Experiment.last
+      end
+
       @survey.experiment = experiment
       @survey.turkee_task   =  task
       questions = @survey.experiment.randomize_questions
