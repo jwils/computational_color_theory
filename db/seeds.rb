@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require 'CSV'
+require 'csv'
 #### Initialize Sanity check ####
 BASE_DIR = File.join(Rails.root, 'public/exp_img/')
 i = Image.create(:id => 1)
