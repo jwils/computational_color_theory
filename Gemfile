@@ -6,6 +6,7 @@ gem 'json', '1.7.6'
 
 gem 'mysql2'
 
+gem 'rb-readline'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

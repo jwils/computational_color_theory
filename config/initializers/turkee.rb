@@ -9,7 +9,7 @@ RTurk.setup(AWSACCESSKEYID, AWSSECRETACCESSKEY, :sandbox => (Rails.env == 'produ
 
 
 Turkee::TurkeeTask.class_eval do
-  has_one :experiment
+  belongs_to :experiment
   has_many :questions, :through => :experiments
 
 =begin

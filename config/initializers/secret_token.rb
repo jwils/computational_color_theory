@@ -1,0 +1,1 @@
+Surveyapp::Application.config.secret_token = "5d22f6cfdf3e985650d8ad98dcdb5dac0c9eb0bfbd52808d0c6d805296219e16f47dc7eceb42ef90d4a667eff4e573dc71c11dfdcb86284a2af2e1c1d6a9e276"
