@@ -15,6 +15,7 @@
     <%= f.input :font_size %>
 
     <h3>Foreground color</h3>
+    <%= f.association :fg_color, :include_blank => "(leave if new color)" %>
     <%= f.fields_for :fg_color do |fg_color| %>
         <%= fg_color.input :color_type %>
         <%= fg_color.input :val1 %>
@@ -23,6 +24,7 @@
     <% end %>
 
     <h3>Background color</h3>
+    <%= f.association :bg_color, :include_blank => "(leave if new color)" %>
     <%= f.fields_for :bg_color do |bg_color| %>
         <%= bg_color.input :color_type %>
         <%= bg_color.input :val1 %>
