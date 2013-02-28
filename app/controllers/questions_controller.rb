@@ -13,8 +13,11 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-    @question = Question.find(params[:id])
-
+    if params[:id1].nil?
+      @question = Question.find(params[:id])
+    else
+      @question = Question.find_by_ids(params[:id1], params[:id2])
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @question }

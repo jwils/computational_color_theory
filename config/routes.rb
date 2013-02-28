@@ -3,6 +3,7 @@ Surveyapp::Application.routes.draw do
 
   #todo
   match 'experiments/:id/launch_experiment' => 'experiments#launch_exp'
+  match 'questions/:id1/:id2' => 'questions#show'
 
   resources :surveys
   resources :responses
