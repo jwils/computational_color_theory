@@ -45,7 +45,7 @@ class Question < ActiveRecord::Base
   def self.find_by_ids(image1_id, image2_id)
     q = Question.find_by_img1_id_and_img2_id(image1_id, image2_id)
     if q.nil?
-      q = Question.find_by_img1_id_and_img2_id(image1_id, image2_id)
+      q = Question.find_by_img1_id_and_img2_id(image2_id, image1_id)
     end
     return q
   end
