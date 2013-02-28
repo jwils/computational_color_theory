@@ -6,6 +6,14 @@ class Question < ActiveRecord::Base
   attr_accessible  :img1_id, :img2_id
   acts_as_taggable
 
+  def image_one_count
+    self.responses.where(:chosen_image => 'img1').count
+  end
+
+  def image_two_count
+    self.responses.where(:chosen_image => 'img2').count
+  end
+
   def randomize_to_json
     img1_json = {:id => img1.id, :image_name => img1.image_name.url}
     img2_json = {:id => img2.id, :image_name => img2.image_name.url}
