@@ -113,9 +113,9 @@ ActiveRecord::Schema.define(:version => 20130225232544) do
     t.string   "assignment_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.integer  "turkee_task_id"
     t.string   "worker_id"
     t.integer  "result_id"
+    t.integer  "turkee_task_id"
   end
 
   add_index "turkee_imported_assignments", ["assignment_id"], :name => "index_turkee_imported_assignments_on_assignment_id", :unique => true
