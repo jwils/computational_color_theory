@@ -42,6 +42,13 @@ class Question < ActiveRecord::Base
     questions
   end
 
+  def self.find_by_ids(image1_id, image2_id)
+    q = Question.find_by_img1_id_and_img2_id(image1_id, image2_id)
+    if q.nil?
+      q = Question.find_by_img1_id_and_img2_id(image1_id, image2_id)
+    end
+    return q
+  end
   def self.find_or_create_by_images(image1, image2)
     q = Question.find_by_img1_id_and_img2_id(image1.id, image2.id)
     if q.nil?
