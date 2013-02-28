@@ -26,9 +26,9 @@ class Response < ActiveRecord::Base
 
   def chosen_index
     if chosen_image == 'img1'
-      reversed + 1
+      1
     else
-      2 - reversed
+      2
     end
   end
 end
