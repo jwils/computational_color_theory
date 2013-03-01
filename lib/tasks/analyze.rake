@@ -3,7 +3,7 @@ require 'csv'
 namespace :analyze do
   task :print, [:exp_id] => :environment do |t, args|
     CSV.open(File.join(Rails.root, 'public/results.csv'), "wb") do |csv|
-      csv << %w[quiz_id ruler_height ruler_width question_id image_1_id image_2_id chosen]
+      csv << %w[image_1_id image_2_id chosen]
       Experiment.find(args[:exp_id]).questions.each do |question|
          question.image_one_count.times{csv << [question.img1_id, question.img2_id, 1]}
          question.image_two_count.times{csv << [question.img1_id, question.img2_id, 2]}
