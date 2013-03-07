@@ -43,19 +43,24 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    if params[:image][:fg_color_id].blank?
-      fg_attr = params[:image][:fg_color_attributes]
-      fg_color = Color.find_or_create_by_color_type_and_val1_and_val2_and_val3(fg_attr[:color_type], fg_attr[:val1], fg_attr[:val2], fg_attr[:val3])
-    else
-      fg_color = Color.find(params[:image][:fg_color_id])
-    end
-
-    if params[:image][:bg_color_id].blank?
-      bg_attr = params[:image][:bg_color_attributes]
-      bg_color = Color.find_or_create_by_color_type_and_val1_and_val2_and_val3(bg_attr[:color_type], bg_attr[:val1], bg_attr[:val2], bg_attr[:val3])
-    else
-      bg_color = Color.find(params[:image][:bg_color_id])
-    end
+    fname = params[:image][:image_name].original_filename
+    fname = fname.slice(0..(fname.index('.'))).split("_")
+    params[:image][:font_size] = fname[3].to_i
+    fg_color = Color.color_from_string(fname[2])
+    bg_color = Color.color_from_string(fname[4])
+    #if params[:image][:fg_color_id].blank?
+    #  fg_attr = params[:image][:fg_color_attributes]
+    #  fg_color = Color.find_or_create_by_color_type_and_val1_and_val2_and_val3(fg_attr[:color_type], fg_attr[:val1], fg_attr[:val2], fg_attr[:val3])
+    #else
+    #  fg_color = Color.find(params[:image][:fg_color_id])
+    #end
+    #
+    #if params[:image][:bg_color_id].blank?
+    #  bg_attr = params[:image][:bg_color_attributes]
+    #  bg_color = Color.find_or_create_by_color_type_and_val1_and_val2_and_val3(bg_attr[:color_type], bg_attr[:val1], bg_attr[:val2], bg_attr[:val3])
+    #else
+    #  bg_color = Color.find(params[:image][:bg_color_id])
+    #end
 
     params[:image].delete :fg_color_attributes
     params[:image].delete :bg_color_attributes
