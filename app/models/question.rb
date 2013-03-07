@@ -11,7 +11,7 @@ class Question < ActiveRecord::Base
   end
 
   def image_two_count
-    self.responses.where(:chosen_image => 'img2', :reversed => 0).count + self.responses.where(:chosen_image => 'img2', :reversed => 0).count
+    self.responses.where(:chosen_image => 'img2', :reversed => 0).count + self.responses.where(:chosen_image => 'img2', :reversed => 1).count
   end
 
   def randomize_to_json
