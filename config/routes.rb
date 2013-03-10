@@ -4,6 +4,7 @@ Surveyapp::Application.routes.draw do
   #todo
   match 'experiments/:id/launch_experiment' => 'experiments#launch_exp'
   match 'questions/:id1/:id2' => 'questions#show'
+  match 'experiments/:id/results' => 'experiments#get_results', :as => 'exp_results'
 
   resources :surveys
   resources :responses

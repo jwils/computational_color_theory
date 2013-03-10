@@ -31,4 +31,13 @@ class Response < ActiveRecord::Base
       2 - reversed
     end
   end
+
+  def self.to_csv
+    CSV.generate(options) do |csv|
+      csv << %w[image_1_id image_2_id chosen]
+      all.each do |response|
+        csv << [img1, img2, chosen_index]
+      end
+    end
+  end
 end

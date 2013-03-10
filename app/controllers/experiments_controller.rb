@@ -90,4 +90,11 @@ class ExperimentsController < ApplicationController
     experiment = Experiment.find(params[:id])
     @turkee_task = Turkee::TurkeeTask.new
   end
+
+  def get_results
+    @responses = Experiment.find(args[:id]).responses.to_csv
+    respond_to do |format|
+      format.csv { send_data @responses.to_csv }
+    end
+  end
 end
