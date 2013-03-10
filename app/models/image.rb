@@ -11,14 +11,16 @@ class Image < ActiveRecord::Base
 
   mount_uploader :image_name, ImageUploader
 
-  has_many :questions
+  has_many :img1_questions, :foreign_key => :img1_id, :class_name => Question
+  has_many :img2_questions, :foreign_key => :img2_id, :class_name => Question
 
-  def self.find_or_create_by_cielch(cielch_fg,cielch_bg, hsh = {})
-    rgb_fg = cielch_to_rgb(cielch_fg)
-    rgb_bg = cielch_to_rgb(cielch_bg)
-    title_image = MagickTitle.say(DEFAULT_IMG_TEXT,
-                    :background_color =>to_hex(rgb_bg),
-                    :color =>to_hex(rgb_fg))
+  def questions
+    Question.joins(:img1).joins(:img2).where('img1_id = ? or img2_id = ?', self.id, self.id).uniq
+  end
+
+  def self.questions
+    joined_query = Question.joins(:img1).joins(:img2)
+    joined_query.where('img1_id in (?) or img2_id in (?)', self.select(:id), self.select(:id)).uniq
   end
 
   def self.to_hex(rgb)

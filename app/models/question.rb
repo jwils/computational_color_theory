@@ -1,7 +1,7 @@
 class Question < ActiveRecord::Base
   belongs_to :img1, :class_name => Image, :foreign_key => :img1_id
   belongs_to :img2, :class_name => Image, :foreign_key => :img2_id
-  has_and_belongs_to_many :experiment
+  has_and_belongs_to_many :experiments
   has_many :responses
   attr_accessible  :img1_id, :img2_id
   acts_as_taggable
@@ -12,6 +12,13 @@ class Question < ActiveRecord::Base
 
   def image_two_count
     self.responses.where(:chosen_image => 'img2', :reversed => 0).count + self.responses.where(:chosen_image => 'img1', :reversed => 1).count
+  end
+
+  def self.images
+    joined_tables = Image.joins(:img1_questions).joins(:img2_questions)
+    joined_tables.where('questions.id in (?) or  img2_questions_images.id in  (?)',
+                       select(:id), select(:id)).uniq
+
   end
 
   def randomize_to_json
