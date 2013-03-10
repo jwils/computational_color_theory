@@ -92,9 +92,9 @@ class ExperimentsController < ApplicationController
   end
 
   def get_results
-    @responses = Experiment.find(args[:id]).responses.to_csv
+    @responses = Experiment.find(params[:id]).responses
     respond_to do |format|
-      format.csv { send_data @responses.to_csv }
+      format.csv { send_data @responses.generate_csv}
     end
   end
 end

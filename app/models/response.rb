@@ -1,6 +1,7 @@
 class Response < ActiveRecord::Base
   belongs_to :survey
   belongs_to :question
+  default_scope :include => :question
   attr_accessible :chosen_image, :reversed, :survey_id, :question_id
   acts_as_taggable
 
@@ -32,11 +33,15 @@ class Response < ActiveRecord::Base
     end
   end
 
-  def self.to_csv
+  def to_s
+    "#{img1}, #{img2}, #{chosen_index}"
+  end
+
+  def self.generate_csv(options = {})
     CSV.generate(options) do |csv|
       csv << %w[image_1_id image_2_id chosen]
       all.each do |response|
-        csv << [img1, img2, chosen_index]
+        csv << [response.img1.id, response.img2.id, response.chosen_index]
       end
     end
   end

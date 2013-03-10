@@ -4,7 +4,11 @@
   <b>Name:</b>
   <%= @experiment.name %>
 </p>
-<%= link_to 'download results', exp_results_path %>
+<br />
+Current Response count is <%= @experiment.surveys.count %>
+<br />
+<%= link_to 'download results', exp_results_path(:format => :csv) %>
+
 <p>
   <b>Images:</b><br />
   <% @experiment.images.each do |x| %>
