@@ -6,12 +6,25 @@ class Question < ActiveRecord::Base
   attr_accessible  :img1_id, :img2_id
   acts_as_taggable
 
-  def image_one_count
-    self.responses.where(:chosen_image => 'img1', :reversed => 0).count + self.responses.where(:chosen_image => 'img2', :reversed => 1).count
+  scope :find_by_ids, lambda {|image1_id, image2_id|
+    where('(img1_id = ? and img2_id = ?) or (img1_id = ? and img2_id = ?)', image1_id, image2_id, image2_id, image1_id)
+  }
+
+  scope :random, lambda{|num_questions| order('RANDOM()').limit(num_questions)}
+
+  def filter_response(opts = {})
+    resp = self.responses
+    resp.by_experiment unless opts[:experiment_id].nil?
   end
 
-  def image_two_count
-    self.responses.where(:chosen_image => 'img2', :reversed => 0).count + self.responses.where(:chosen_image => 'img1', :reversed => 1).count
+  def image_one_count(opts = {})
+    resp = filter_response(opts)
+    resp.where(:chosen_image => 'img1', :reversed => 0).count + resp.where(:chosen_image => 'img2', :reversed => 1).count
+  end
+
+  def image_two_count(opts = {})
+    resp = filter_response(opts)
+    resp.where(:chosen_image => 'img2', :reversed => 0).count + resp.where(:chosen_image => 'img1', :reversed => 1).count
   end
 
   def self.images
@@ -19,6 +32,16 @@ class Question < ActiveRecord::Base
     joined_tables.where('questions.id in (?) or  img2_questions_images.id in  (?)',
                        select(:id), select(:id)).uniq
 
+  end
+
+  def self.generate_csv(exp_id)
+    CSV.generate(options) do |csv|
+      csv << %w[image_1_id image_2_id chosen]
+      all.each do |question|
+        question.image_one_count(:experiment_id => exp_id).times{csv << [question.img1_id, question.img2_id, 1]}
+        question.image_two_count(:experiment_id => exp_id).times{csv << [question.img1_id, question.img2_id, 2]}
+      end
+    end
   end
 
   def randomize_to_json
@@ -49,19 +72,9 @@ class Question < ActiveRecord::Base
     questions
   end
 
-  def self.find_by_ids(image1_id, image2_id)
-    q = Question.find_by_img1_id_and_img2_id(image1_id, image2_id)
-    if q.nil?
-      q = Question.find_by_img1_id_and_img2_id(image2_id, image1_id)
-    end
-    return q
-  end
   def self.find_or_create_by_images(image1, image2)
-    q = Question.find_by_img1_id_and_img2_id(image1.id, image2.id)
-    if q.nil?
-      q = Question.find_or_create_by_img1_id_and_img2_id(image2.id, image1.id)
-    end
-    return q
+    Question.find_by_img1_id_and_img2_id(image1.id, image2.id) ||
+        Question.find_or_create_by_img1_id_and_img2_id(image2.id, image1.id)
   end
 
   def self.find_group_by_tags(tags)
@@ -72,9 +85,5 @@ class Question < ActiveRecord::Base
         questions.delete(question)
       end
     end
-  end
-
-  def self.get_random_questions(num_questions)
-    self.order("RANDOM()").limit(num_questions)
   end
 end

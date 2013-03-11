@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225232544) do
+ActiveRecord::Schema.define(:version => 20130309024112) do
 
   create_table "colors", :force => true do |t|
     t.string   "color_type"
@@ -45,12 +45,10 @@ ActiveRecord::Schema.define(:version => 20130225232544) do
   create_table "questions", :force => true do |t|
     t.integer  "img1_id"
     t.integer  "img2_id"
-    t.integer  "experiment_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "questions", ["experiment_id"], :name => "index_questions_on_experiment_id"
   add_index "questions", ["img1_id"], :name => "index_questions_on_img1_id"
   add_index "questions", ["img2_id"], :name => "index_questions_on_img2_id"
 
@@ -113,9 +111,9 @@ ActiveRecord::Schema.define(:version => 20130225232544) do
     t.string   "assignment_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "turkee_task_id"
     t.string   "worker_id"
     t.integer  "result_id"
-    t.integer  "turkee_task_id"
   end
 
   add_index "turkee_imported_assignments", ["assignment_id"], :name => "index_turkee_imported_assignments_on_assignment_id", :unique => true

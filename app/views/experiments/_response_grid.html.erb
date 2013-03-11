@@ -1,0 +1,18 @@
+<%= @images = @experiment.images #REQUIRE IMAGES (ORDER MATTERS) %>
+<table>
+  <tr>
+    <th></th>
+    <% @images.each do |image| %>
+        <th>ID = <%= image.id %></th>
+    <% end %>
+  </tr>
+
+  <% images.each do |image2| %>
+      <tr>
+        <td>ID = <%= image2.id %></td>
+        <% images.each do |image1| %>
+            <%= Question.find_by_ids(image1.id,image2.id) #TODO: CAN CREATE NEW DATA STRUCT LATER %>
+        <% end %>
+  <% end %>
+</table>
+
