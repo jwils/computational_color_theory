@@ -14,7 +14,7 @@ class Question < ActiveRecord::Base
 
   def filter_response(opts = {})
     resp = self.responses
-    resp.by_experiment unless opts[:experiment_id].nil?
+    resp.by_experiment(opts[:experiment_id]) unless opts[:experiment_id].nil?
   end
 
   def image_one_count(opts = {})
