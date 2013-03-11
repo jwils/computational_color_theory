@@ -5,7 +5,7 @@ class Response < ActiveRecord::Base
   attr_accessible :chosen_image, :reversed, :survey_id, :question_id
   acts_as_taggable
 
-  scope :by_experiment, lambda{ |experiment_id| joins(:survey).where(:experiment_id => experiment_id)}
+  scope :by_experiment, lambda{ |experiment_id| joins(:survey).where('survey.experiment_id' => experiment_id)}
 
   def experiment
     self.survey.experiment unless self.survey.nil?
