@@ -34,7 +34,7 @@ class Question < ActiveRecord::Base
 
   end
 
-  def self.generate_csv(exp_id)
+  def self.generate_csv(exp_id, options ={})
     CSV.generate(options) do |csv|
       csv << %w[image_1_id image_2_id chosen]
       all.each do |question|
