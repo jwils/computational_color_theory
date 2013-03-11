@@ -93,8 +93,9 @@ class ExperimentsController < ApplicationController
 
   def get_results
     @questions = Experiment.find(params[:id]).questions
+    file_name = "exp#{params[:id]}_results.csv"
     respond_to do |format|
-      format.csv { send_data @questions.generate_csv(params[:id])}
+      format.csv { send_data @questions.generate_csv(params[:id]), :filename => file_name}
     end
   #  @responses = Experiment.find(params[:id]).responses
   #  respond_to do |format|
