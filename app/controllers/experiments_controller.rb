@@ -93,7 +93,7 @@ class ExperimentsController < ApplicationController
 
   def get_results
     @questions = Experiment.find(params[:id]).questions
-    file_name = "exp#{params[:id]}_results.csv"
+    file_name = "exp#{params[:id]}_results_#{Time.now.strftime('%Y_%m_%d_%H_%M_%S')}.csv"
     respond_to do |format|
       format.csv { send_data @questions.generate_csv(params[:id]), :filename => file_name}
     end
