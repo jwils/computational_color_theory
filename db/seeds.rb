@@ -1,13 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require 'csv'
 #### Initialize Sanity check ####
+=begin
 BASE_DIR = File.join(Rails.root, 'public/exp_img/')
 i = Image.create(:id => 1)
 i.image_name.store!(File.open(File.join(BASE_DIR, '1fdb4a1f7f_Arial_hsl0-0-15_24pt_hsl0-0-100.png')))
@@ -89,4 +83,37 @@ CSV.foreach(File.join(Rails.root, 'db/prelim_data.csv'), { :headers => true }) d
     answer.survey=survey
     answer.reversed = if question.img1_id == row[4].to_i then 0 else 1 end
     answer.save
+end
+=end
+
+
+BASE_DIR = File.join(Rails.root, 'db/to_add/random/')
+assignments = (1..80).to_a.shuffle.map { |x| x % 10}
+image_groups = []
+10.times {image_groups.append([Image.find(7), Image.find(8), Image.find(4)]) }
+
+a = 0
+
+Dir.glob(BASE_DIR + "*.*") do |my_text_file|
+  i = Image.new
+  fname = my_text_file.split('/').last
+  fname = fname.slice(0..(fname.index('.'))).split("_")
+  i.font_size = fname[3].to_i
+  i.fg_color = Color.color_from_string(fname[2])
+  i.bg_color = Color.color_from_string(fname[4])
+  i.save
+
+  i.image_name.store!(File.open(my_text_file))
+  i.save
+
+  image_groups[assignments[a]].append i
+  a += 1
+end
+
+image_groups.each do |image_set|
+  questions = Question.create_questions_from_images(image_set)
+
+  experiment = Experiment.create(:name => 'Random Images')
+  experiment.questions = questions
+  experiment.save
 end
