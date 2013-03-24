@@ -196,23 +196,23 @@ module ConversionFunctions
     b = 0
     g = 0
 
-    if H < 60
+    if h < 60
       r = c
       g = x
       b = 0
-    elsif H < 120
+    elsif h < 120
       r = x
       g = c
       b = 0
-    elsif H < 180
+    elsif h < 180
       r = 0
       g = c
       b = x
-    elsif H < 240
+    elsif h < 240
       r = 0
       g = x
       b = c
-    elsif H < 300
+    elsif h < 300
       r = x
       g = 0
       b = c
