@@ -20,11 +20,17 @@ class Question < ActiveRecord::Base
 
   def image_one_count(opts = {})
     resp = filter_response(opts)
+    if resp.nil?
+      return 0
+    end
     resp.where(:chosen_image => 'img1', :reversed => 0).count + resp.where(:chosen_image => 'img2', :reversed => 1).count
   end
 
   def image_two_count(opts = {})
     resp = filter_response(opts)
+    if resp.nil?
+      return 0
+    end
     resp.where(:chosen_image => 'img2', :reversed => 0).count + resp.where(:chosen_image => 'img1', :reversed => 1).count
   end
 
