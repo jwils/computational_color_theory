@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @images }
+      format.json { render "weka_input", :layout => false}
     end
   end
 
@@ -110,4 +110,5 @@ class ImagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
