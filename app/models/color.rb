@@ -12,4 +12,12 @@ class Color < ActiveRecord::Base
     vals = string[3..-1].split('-')
     self.find_or_create_by_color_type_and_val1_and_val2_and_val3(ct, *vals)
   end
+
+  def to_weka(format = :rgb)
+
+  end
+
+  def hsl_to_rgb
+
+  end
 end

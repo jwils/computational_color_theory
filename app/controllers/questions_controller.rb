@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     if params[:id1].nil?
       @question = Question.find(params[:id])
     else
-      @question = Question.find_by_ids(params[:id1], params[:id2])
+      @question = Question.find_by_ids(params[:id1], params[:id2]).first
     end
     respond_to do |format|
       format.html # show.html.erb
