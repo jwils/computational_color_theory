@@ -1,3 +1,5 @@
+require 'lib/conversion_functions'
+
 class Color < ActiveRecord::Base
   include ConversionFunctions
   attr_accessible :color_type, :val1, :val2, :val3
