@@ -175,7 +175,7 @@ module ConversionFunctions
     if ( var_H > 0 )
         var_H = ( var_H / Math.pi ) * 180
     else
-      var_H = 360 - ( abs( var_H ) / Math.pi ) * 180
+      var_H = 360 - (  var_H.abs / Math.pi ) * 180
     end
       ciel = ciel
       ciec = Math.sqrt(ciea**2 + cieb**2 )
@@ -189,8 +189,8 @@ module ConversionFunctions
     s = hsl[1]/100.0
     l = hsl[2]/100.0
 
-    c = (1-abs(2*l - 1))*s
-    x = c*(1-abs((h/60)%2-1))
+    c = (1-(2*l - 1).abs)*s
+    x = c*(1-((h/60)%2-1).abs)
     m = l-(c/2)
     r = 0
     b = 0
