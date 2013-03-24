@@ -97,6 +97,11 @@ module ConversionFunctions
         h = ((var_R - var_G)/del_Max)+4
       end
     end
+
+    h = 0 if h.nan?
+    s = 0 if s.nan?
+    l = 0 if l.nan?
+
     return (h*60),(s*100),(l*100)
   end
 
