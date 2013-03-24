@@ -14,7 +14,7 @@ class Question < ActiveRecord::Base
 
   def filter_response(opts = {})
     resp = self.responses
-    resp.by_experiment(opts[:experiment_id]) unless opts[:experiment_id].nil?
+    resp = resp.by_experiment(opts[:experiment_id]) unless opts[:experiment_id].nil?
     return resp
   end
 
@@ -28,9 +28,6 @@ class Question < ActiveRecord::Base
 
   def image_two_count(opts = {})
     resp = filter_response(opts)
-    if resp.nil?
-      return 0
-    end
     resp.where(:chosen_image => 'img2', :reversed => 0).count + resp.where(:chosen_image => 'img1', :reversed => 1).count
   end
 
