@@ -46,11 +46,15 @@ namespace :analyze do
     Dir.glob(BASE_DIR + "*.*") do |my_text_file|
       File.open(my_text_file) do |file|
         exp_number = file.readline[1]
-        print exp_number
         noise = file.readline
-        print noise
         while not file.eof?
-          puts file.readline
+          image_info = file.readline.split(",")
+          r = Result.new
+          r.experiment_id= exp_number
+          r.image_id =  image_info[0]
+          r.psi =  image_info[1]
+          r.noise = noise
+          r.save
         end
       end
     end
