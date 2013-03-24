@@ -76,8 +76,8 @@ module ConversionFunctions
     var_G = ( g / 255.0 )
     var_B = ( b / 255.0 )
 
-    var_Min = Math.min( var_R, var_G, var_B )    #Min. value of RGB
-    var_Max = Math.max( var_R, var_G, var_B )    #Max. value of RGB
+    var_Min = [var_R, var_G, var_B].min    #Min. value of RGB
+    var_Max = [var_R, var_G, var_B ].max    #Max. value of RGB
     del_Max = var_Max - var_Min             #Delta RGB value
     l = ( var_Max + var_Min ) / 2.0
 
