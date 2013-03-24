@@ -187,7 +187,7 @@ module ConversionFunctions
     xyz_to_cielab(rgb_to_xyz(rgb))
   end
 
-  def rgb_cielch(rgb)
+  def rgb_to_cielch(rgb)
     cielab_to_cielch(rgb_to_cielab(rgb))
   end
 
