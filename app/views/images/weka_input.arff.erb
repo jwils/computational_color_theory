@@ -1,0 +1,20 @@
+@relation textreadability
+
+@ATTRIBUTE imageid   NUMERIC
+@ATTRIBUTE readval   NUMERIC
+@ATTRIBUTE fg_r   NUMERIC
+@ATTRIBUTE fg_g   NUMERIC
+@ATTRIBUTE fg_b   NUMERIC
+@ATTRIBUTE bg_r   NUMERIC
+@ATTRIBUTE bg_g   NUMERIC
+@ATTRIBUTE bg_b   NUMERIC
+
+
+@data
+
+<% Question.each do |question| %>
+   question.to_arff
+
+<% end %>
+
+
