@@ -14,6 +14,8 @@ class Image < ActiveRecord::Base
   has_many :img1_questions, :foreign_key => :img1_id, :class_name => Question
   has_many :img2_questions, :foreign_key => :img2_id, :class_name => Question
 
+  has_many :results
+
   def questions
     Question.joins(:img1).joins(:img2).where('img1_id = ? or img2_id = ?', self.id, self.id).uniq
   end
@@ -29,5 +31,9 @@ class Image < ActiveRecord::Base
 
   def image_name_tag
     "<img src=\"#{self.image_name_url}\">".html_safe + "Image ID=#{id}" + " " + tag_list
+  end
+
+  def to_arff
+    "#{id}, #{results.average(:psi)}, #{fg_color.val1}, #{fg_color.val2}, #{fg_color.val3}, #{bg_color.val1}, #{bg_color.val2}, #{bg_color.val3}"
   end
 end
