@@ -40,4 +40,18 @@ namespace :analyze do
       puts [survey.id, left_count, right_count, wrong_answer_count[survey]].join(",")
     end
   end
+
+  task :add_results => :environment do
+    Dir.glob(BASE_DIR + "*.*") do |my_text_file|
+      File.open(my_text_file) do |file|
+        exp_number = file.readline[1]
+        print exp_number
+        noise = file.readline
+        print noise
+        while not file.eof?
+          puts file.readline
+        end
+      end
+    end
+  end
 end
