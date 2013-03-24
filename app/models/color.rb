@@ -20,6 +20,9 @@ class Color < ActiveRecord::Base
     end
     method = 'rgb_to_' + format.to_s
     vals = self.send(method, vals) if self.respond_to? method
+    vals[0] = 0 if vals[0] < 0
+    vals[1] = 0 if vals[1] < 0
+    vals[2] = 0 if vals[2] < 0
     return vals
   end
 end
