@@ -25,4 +25,8 @@ class Color < ActiveRecord::Base
     vals[2] = 0 if vals[2] < 0
     return vals
   end
+
+  def get_all_color_data
+    (to_weka(:rgb) + to_weka(:xyz) + to_weka(:hsl) + to_weka(:cielab) + to_weka(:cielch)).join(', ')
+  end
 end
