@@ -172,9 +172,9 @@ module ConversionFunctions
     var_H = Math.atan2( cieb, ciea )
 
     if ( var_H > 0 )
-        var_H = ( var_H / Math.pi ) * 180
+        var_H = ( var_H / Math::PI ) * 180
     else
-      var_H = 360 - (  var_H.abs / Math.pi ) * 180
+      var_H = 360 - (  var_H.abs / Math::PI ) * 180
     end
       ciel = ciel
       ciec = Math.sqrt(ciea**2 + cieb**2 )
