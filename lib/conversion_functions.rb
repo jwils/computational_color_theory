@@ -68,7 +68,6 @@ module ConversionFunctions
     return xyz_to_rgb(cielab_to_xyz(cielch_to_cielab(cielch)))
   end
 
-
   def rgb_to_hsl(rgb)
     r = rgb[0]
     g = rgb[1]
@@ -85,7 +84,7 @@ module ConversionFunctions
     h = 0.0
     s = 0.0
     if del_Max
-      if L < 0.5
+      if l < 0.5
         s = del_Max / ( var_Max + var_Min )
       else
         s = del_Max / ( 2 - var_Max - var_Min )
@@ -182,6 +181,14 @@ module ConversionFunctions
       cieh = var_H
 
     return ciel, ciec, cieh
+  end
+
+  def rgb_to_cielab(rgb)
+    xyz_to_cielab(rgb_to_xyz(rgb))
+  end
+
+  def rgb_to_cielch(rgb)
+    cielab_to_cielch(rgb_to_cielab(rgb))
   end
 
   def hsl_to_rgb(hsl)
