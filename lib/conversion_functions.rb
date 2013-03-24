@@ -97,7 +97,7 @@ module ConversionFunctions
         h = ((var_R - var_G)/del_Max)+4
       end
     end
-    return (h*60).round,(s*100).round,(l*100).round
+    return (h*60),(s*100),(l*100)
   end
 
   def rgb_to_xyz(rgb)
