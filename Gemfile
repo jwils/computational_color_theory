@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 gem 'json', '1.7.6'
-#gem 'mysql2'
+gem 'mysql2'
+gem 'rb-readline'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -14,7 +15,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'sqlite3'
+#  gem 'sqlite3'
 end
 
 gem 'turkee'

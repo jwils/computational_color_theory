@@ -222,6 +222,6 @@ module ConversionFunctions
       b = x
     end
 
-    return 255*(r+m), 255*(g+m), int(255*(b+m))
+    return 255*(r+m), 255*(g+m), 255*(b+m)
   end
 end

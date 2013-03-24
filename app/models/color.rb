@@ -19,6 +19,7 @@ class Color < ActiveRecord::Base
       vals = hsl_to_rgb(vals)
     end
     method = 'rgb_to_' + format.to_s
-    self.send(method, vals) if self.respond_to? method
+    vals = self.send(method, vals) if self.respond_to? method
+    return vals
   end
 end
