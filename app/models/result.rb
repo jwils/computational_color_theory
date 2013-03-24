@@ -1,4 +1,4 @@
-class Results < ActiveRecord::Base
+class Result < ActiveRecord::Base
   belongs_to :experiment
   belongs_to :image
   attr_accessible :psi, :noise
