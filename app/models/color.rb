@@ -1,5 +1,5 @@
 class Color < ActiveRecord::Base
-  #include ConversionFunctions
+  include ConversionFunctions
   attr_accessible :color_type, :val1, :val2, :val3
   has_many :images
 
@@ -14,10 +14,11 @@ class Color < ActiveRecord::Base
   end
 
   def to_weka(format = :rgb)
-
-  end
-
-  def hsl_to_rgb
-
+    vals = [val1, val2, val3]
+    if color_type == 'hsl'
+      vals = hsl_to_rgb(vals)
+    end
+    method = 'rgb_to_' + format.to_s
+    self.send(method, vals) if self.respond_to? method
   end
 end

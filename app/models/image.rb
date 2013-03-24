@@ -36,4 +36,8 @@ class Image < ActiveRecord::Base
   def to_arff
     "#{id}, #{results.average(:psi)}, #{fg_color.val1}, #{fg_color.val2}, #{fg_color.val3}, #{bg_color.val1}, #{bg_color.val2}, #{bg_color.val3}"
   end
+
+  def to_rgb
+    rgb_to_hsl
+  end
 end
