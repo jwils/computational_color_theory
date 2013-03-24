@@ -42,6 +42,7 @@ namespace :analyze do
   end
 
   task :add_results => :environment do
+    BASE_DIR = File.join(Rails.root, 'prepro/')
     Dir.glob(BASE_DIR + "*.*") do |my_text_file|
       File.open(my_text_file) do |file|
         exp_number = file.readline[1]
