@@ -34,10 +34,32 @@ class Image < ActiveRecord::Base
   end
 
   def to_arff
-    "#{id}, #{results.average(:psi)}, #{fg_color.get_all_color_data}, #{bg_color.get_all_color_data}"
+    "#{id}, #{results.average(:psi)}, #{trip_diff_wrapper(:clielch).join(', ')}, #{trip_diff_wrapper(:clielch, :square).join(', ')}"
+  end
+
+
+  def trip_diff_wrapper(color_name, fun = nil)
+    trip_diff(fg_color.to_weka(color_name),bg_color.to_weka(color_name), fun)
   end
 
   def to_rgb
     rgb_to_hsl
+  end
+
+  def trip_diff(trip1, trip2, fun = nil)
+    response = []
+    response[0] = trip1[0] - trip2[0]
+    response[1] = trip1[1] - trip2[1]
+    response[2] = trip1[2] - trip2[2]
+    response = response.map {|x| self.send(fun, x)} if fun
+    response
+  end
+
+  def square(x)
+    x**2
+  end
+
+  def abs(x)
+    x.abs
   end
 end
