@@ -11,8 +11,9 @@
 
   <br />
 
-   Calculated Readability: <%= @image.get_reg_val %>
-   MLDS Readability: <%= @image.results.average(:psi) %>
+<p>Calculated Readability: <%= @image.get_reg_val %></p>
+<p>MLDS Readability: <%= @image.results.average(:psi) %> </p>
+   <p>W3C Says: <%= @image.get_w3c %> </p>
 
 <%= link_to 'Edit', edit_image_path(@image) %> |
 <%= link_to 'Back', images_path %>

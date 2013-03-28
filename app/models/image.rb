@@ -69,4 +69,18 @@ class Image < ActiveRecord::Base
 
     3.7329 * (fg[0] - bg[0])**2 + -16.8542 * (fg[1] - bg[1])**2 + 6.9221 * (fg[1] - bg[1]).abs +  0.6456 *  (fg[2] - bg[2]).abs - 35.0349
   end
+
+  def get_w3c
+    fg = fg_color.to_weka(:rgb)
+    bg = bg_color.to_weka(:rgb)
+
+    hue_diff  = (fg[0] - bg[0]).abs + (fg[1] - bg[1]).abs + (fg[2] - bg[2]).abs
+
+    brightness_diff = ((299*fg[0] + 587*fg[1] + 144*fg[2]) / 1000 - (299*bg[0] + 587*bg[1] + 144*bg[2]) / 1000).abs
+    if hue_diff > 500 and brightness_diff > 125
+      "readable"
+    else
+      "not readable"
+    end
+  end
 end
