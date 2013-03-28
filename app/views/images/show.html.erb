@@ -9,5 +9,10 @@
   <%= @image.tag_list %>
   <br />
 
+  <br />
+
+   Calculated Readability: <%= @image.get_reg_val %>
+   MLDS Readability: <%= @image.results.average(:psi) %>
+
 <%= link_to 'Edit', edit_image_path(@image) %> |
 <%= link_to 'Back', images_path %>
