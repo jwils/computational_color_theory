@@ -20,7 +20,7 @@ class Color < ActiveRecord::Base
     end
     method = 'rgb_to_' + format.to_s
     raise "ERORR" unless (self.respond_to? method or format.to_s == 'rgb')
-    vals = self.send(method, vals)
+    vals = self.send(method, vals) unless format.to_s == 'rgb'
     vals[0] = 0 if vals[0] < 0
     vals[1] = 0 if vals[1] < 0
     vals[2] = 0 if vals[2] < 0
