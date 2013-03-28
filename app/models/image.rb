@@ -34,7 +34,7 @@ class Image < ActiveRecord::Base
   end
 
   def to_arff
-    "#{id}, #{results.average(:psi)*1000}, #{trip_diff_wrapper(:rgb).join(', ')}, #{trip_diff_wrapper(:rgb, :square).join(', ')}, #{trip_diff_wrapper(:rgb, :abs).join(', ')}" if results.average(:psi)
+    "#{id}, #{results.average(:psi)*1000}, #{trip_diff_wrapper(:cielch).join(', ')}, #{trip_diff_wrapper(:cielch, :square).join(', ')}, #{trip_diff_wrapper(:cielch, :abs).join(', ')}" if results.average(:psi)
   end
 
 

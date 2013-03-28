@@ -19,7 +19,8 @@ class Color < ActiveRecord::Base
       vals = hsl_to_rgb(vals)
     end
     method = 'rgb_to_' + format.to_s
-    vals = self.send(method, vals) if self.respond_to? method
+    raise "ERORR" unless (self.respond_to? method or format.to_s == 'rgb')
+    vals = self.send(method, vals)
     vals[0] = 0 if vals[0] < 0
     vals[1] = 0 if vals[1] < 0
     vals[2] = 0 if vals[2] < 0
@@ -29,4 +30,5 @@ class Color < ActiveRecord::Base
   def get_all_color_data
     (to_weka(:rgb) + to_weka(:xyz) + to_weka(:hsl) + to_weka(:cielab) + to_weka(:cielch)).join(', ')
   end
+
 end
