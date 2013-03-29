@@ -87,10 +87,10 @@ end
 =end
 
 
-BASE_DIR = File.join(Rails.root, 'db/to_add/random/')
-assignments = (1..80).to_a.shuffle.map { |x| x % 10}
+BASE_DIR = File.join(Rails.root, 'db/to_add/random800/')
+assignments = (1..800).to_a.shuffle.map { |x| x % 100}
 image_groups = []
-10.times {image_groups.append([Image.find(7), Image.find(8), Image.find(4)]) }
+100.times {image_groups.append([Image.find(7), Image.find(8), Image.find(4)]) }
 
 a = 0
 
@@ -113,7 +113,7 @@ end
 image_groups.each do |image_set|
   questions = Question.create_questions_from_images(image_set)
 
-  experiment = Experiment.create(:name => 'Random Images')
+  experiment = Experiment.create(:name => 'Random Images 800')
   experiment.questions = questions
   experiment.save
 end
