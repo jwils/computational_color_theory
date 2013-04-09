@@ -13,5 +13,5 @@ Surveyapp::Application.routes.draw do
     resources :questions
     resources :images
 
-  root :to => 'welcome#index'
+  root :to => 'demo#show'
 end

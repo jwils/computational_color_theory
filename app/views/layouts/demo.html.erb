@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Computational Color Theory</title>
+  <%= stylesheet_link_tag    "app", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="top-bar">
+  <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <h1><a href="/">Computational Color Theory</a></h1>
+    </li>
+  </ul>
+</nav>
+<div class="row">
+  <%= yield %>
+</div>
+
+<footer>
+  <%= render 'layouts/footer' %>
+</footer>
+
+<script>
+    $(document).foundation();
+</script>
+</body>
+</html>
