@@ -70,7 +70,7 @@ class Image < ActiveRecord::Base
     square = trip_diff(fg,bg,:square)
     abs = trip_diff(fg,bg,:abs)
 
-    (-0.103 * norm[1] - 0.1022 * norm[2] - 13.1052 * square[1] + 0.7299 * square[2] + 0.8767 * abs[0] + 5.9041 * abs[1] + 0.2978 * abs[2] + 3.3861)/1000
+    (-0.1097 * norm[2] - 11.0903 * square[1] - 1.4958 * square[2] + 1.0089 * abs[0] + 5.7269 * abs[1] + 0.859 * abs[2] - 35.8276)/1000
   end
 
   def get_w3c
