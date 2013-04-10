@@ -73,6 +73,16 @@ class Image < ActiveRecord::Base
     (-0.1097 * norm[2] - 11.0903 * square[1] - 1.4958 * square[2] + 1.0089 * abs[0] + 5.7269 * abs[1] + 0.859 * abs[2] - 35.8276)/1000
   end
 
+  def get_pres_val
+    fg = fg_color.to_weka(:rgb)
+    bg = bg_color.to_weka(:rgb)
+    norm = trip_diff(fg,bg)
+    square = trip_diff(fg,bg,:square)
+    abs = trip_diff(fg,bg,:abs)
+
+    (-1.1*10**-2 * norm[2] - 1.1*10**-3 * square[1] - 1.5*10**-4 * square[2] + 1*10**-1 * abs[0] + 5.7*10**-1 * abs[1] + 8.6*10**-2 * abs[2] - 3.6)/100
+  end
+
   def get_w3c
     fg = fg_color.to_weka(:rgb)
     bg = bg_color.to_weka(:rgb)
