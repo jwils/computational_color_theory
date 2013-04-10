@@ -77,7 +77,7 @@ class Image < ActiveRecord::Base
     fg = fg_color.to_weka(:rgb)
     bg = bg_color.to_weka(:rgb)
     norm = trip_diff(fg,bg)
-    square = trip_diff(fg,bg,:square)
+    square = trip_diff(fg,bg,:square).collect{ |x| x * 1000}
     abs = trip_diff(fg,bg,:abs)
 
     (-1.1*10**-2 * norm[2] - 1.1*10**-3 * square[1] - 1.5*10**-4 * square[2] + 1*10**-1 * abs[0] + 5.7*10**-1 * abs[1] + 8.6*10**-2 * abs[2] - 3.6)/100
