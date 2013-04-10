@@ -16,6 +16,6 @@ class Experiment < ActiveRecord::Base
   end
 
   def randomize_questions
-    self.questions.order("RANDOM()")
+    self.questions.order("RAND()")
   end
 end
