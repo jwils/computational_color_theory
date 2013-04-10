@@ -66,8 +66,11 @@ class Image < ActiveRecord::Base
   def get_reg_val
     fg = fg_color.to_weka(:rgb)
     bg = bg_color.to_weka(:rgb)
+    norm = trip_diff(fg,bg)
+    square = trip_diff(fg,bg,:square)
+    abs = trip_diff(fg,bg,:abs)
 
-    (3.7329 * ((fg[0] - bg[0])**2)/1000 + -16.8542 * ((fg[1] - bg[1]))**2/1000 + 6.9221 * (fg[1] - bg[1]).abs +  0.6456 *  (fg[2] - bg[2]).abs - 35.0349)/ 1000
+    (-0.103 * norm[1] - 0.1022 * norm[2] - 13.1052 * square[1] + 0.7299 * square[2] + 0.8767 * abs[0] + 5.9041 * abs[1] + 0.2978 * abs[2] + 3.3861)/1000
   end
 
   def get_w3c
