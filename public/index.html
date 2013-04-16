@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Computational Color Theory</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/skeleton.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+</head>
+<body>
+
+	<script>
+		function updatePage() {
+			var error = document.getElementById("error");
+			error.style.display = "none";
+			try {
+				updatePreview();
+				updateScore();
+			} catch(err) {
+				console.log("errorrrr");
+				error.style.display = "inline";
+		} finally {
+				return false;
+			}
+		}
+		
+		function updatePreview() {
+			var textColor = document.getElementById("text_color").value;
+			var backgroundColor = document.getElementById("background_color").value;
+			var preview = document.getElementById("preview");
+			if (textColor[0] != '#') {
+				textColor = '#' + textColor;
+			}
+			if (backgroundColor[0] != '#') {
+				backgroundColor = '#' + backgroundColor;
+			}
+			preview.style.color = textColor;
+			preview.style.backgroundColor = backgroundColor;
+		}
+		
+		function updateScore() {
+			var textColor = document.getElementById("text_color").value;
+			var backgroundColor = document.getElementById("background_color").value;
+			var textRgb = hexToRgb(textColor);
+			var backgroundRgb = hexToRgb(backgroundColor);
+			var score = 0.1 * Math.abs(textRgb.r - backgroundRgb.r) + 0.57 * Math.abs(textRgb.g - backgroundRgb.g) +
+				0.086 * Math.abs(textRgb.b - backgroundRgb.b) - 0.011 * (textRgb.b - backgroundRgb.b) -
+				0.0011 * Math.pow(textRgb.g - backgroundRgb.g, 2) -
+				0.00015 * Math.pow(textRgb.b - backgroundRgb.b, 2) - 3.6
+			score = Math.round(score);
+			if (score < 0) score = 0;
+			if (score > 100) score = 100;
+			var scoreElement = document.getElementById("score");
+			scoreElement.textContent = score;
+		}
+		
+		function hexToRgb(hex) {
+				var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+				console.log(result);
+				return result ? {
+						r: parseInt(result[1], 16),
+						g: parseInt(result[2], 16),
+						b: parseInt(result[3], 16)
+				} : null;
+		}
+	</script>
+
+
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<!-- Delete everything in this .container and get started on your own site! -->
+
+	<div class="container">
+		<div class="sixteen columns">
+			<h1 class="remove-bottom" style="margin-top: 40px">Computational Color Theory</h1>
+			<h5>Determining the readability of colored text on colored background</h5>
+			<hr />
+		</div>
+		<div class="one-third column">
+			<h3>Pick your colors</h3>
+			<form onsubmit="return updatePage();">
+				Text color: <input type="text" id="text_color" placeholder="#222222">
+				Background color: <input type="text" id="background_color" placeholder="#EEEEEE">
+				<input type="submit" value="Submit" id="submit_button">
+				<p id="error"> Please enter valid colors. </p>
+			</form>
+		</div>
+		<div class="one-third column">
+			<h3>Preview</h3>
+			<div id="preview">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</div>
+		<div class="one-third column">
+			<h3>Score (?/100)</h3>
+			<h2 id="score">100</h2>
+		</div>
+
+	</div><!-- container -->
+
+
+<!-- End Document
+================================================== -->
+</body>
+</html>
