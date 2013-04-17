@@ -99,7 +99,7 @@
         function w3c_score(textRgb, backgroundRgb) {
             var hue_diff = Math.abs(textRgb.r - backgroundRgb.r) + Math.abs(textRgb.g - backgroundRgb.g) +
                     Math.abs(textRgb.b - backgroundRgb.b);
-            var brightness_diff = brightness(textRgb) - brightness(backgroundRgb);
+            var brightness_diff = Math.abs(brightness(textRgb) - brightness(backgroundRgb));
 
 
             return brightness_diff >= 125 && hue_diff >= 500 ? "Readable" : "Not Readable";
