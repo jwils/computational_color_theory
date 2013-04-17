@@ -79,8 +79,22 @@
 			if (score > 100) score = 100;
 			var scoreElement = document.getElementById("score");
 			scoreElement.textContent = score;
+            var w3cScoreElement = document.getElementById("w3c_score");
+            w3cScoreElement.textContent = w3c_score(textRgb, backgroundRgb)
 		}
-		
+
+        function w3c_score(textRgb, backgroundRgb) {
+            var hue_diff = Math.abs(textRgb.r - backgroundRgb.r) + Math.abs(textRgb.g - backgroundRgb.g) +
+                    Math.abs(textRgb.b - backgroundRgb.b);
+            var brightness_diff = brightness(textRgb) - brightness(backgroundRgb);
+
+
+            return brightness_diff >= 125 && hue_diff >= 500 ? "Readable" : "Not Readable";
+        }
+
+        function brightness(rgb) {
+            return (299 * rgb.r + 587 * rgb.g + 114 * rgb.b) / 1000
+        }
 		function hexToRgb(hex) {
 				var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 				console.log(result);
@@ -122,6 +136,9 @@
 		<div class="one-third column">
 			<h3>Score (?/100)</h3>
 			<h2 id="score">100</h2>
+            <br />
+            <h3>W3C Says...</h3>
+            <h2 id=w3c_score>Not readable</h2>
 		</div>
 
 	</div><!-- container -->
