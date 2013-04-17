@@ -51,9 +51,14 @@
 			}
 		}
 
+        function generateRandomHex() {
+            var str = Math.floor(Math.random() * 255).toString(16);
+            return str.length == 1 ? '0' + str : str;
+
+        }
         function generateRandom() {
-            document.getElementById("text_color").value = Math.floor(Math.random() * 16581376).toString(16);
-            document.getElementById("background_color").value = Math.floor(Math.random() * 16581376).toString(16);
+            document.getElementById("text_color").value = generateRandomHex() + generateRandomHex() + generateRandomHex();
+            document.getElementById("background_color").value = generateRandomHex() + generateRandomHex() + generateRandomHex();
             updatePage();
             return false;
         }
@@ -134,7 +139,6 @@
 				<input type="submit" value="Submit" id="submit_button">
 				<p id="error"> Please enter valid colors. </p>
 			</form>
-            <br />
             <form onsubmit="return generateRandom();">
                 <input type="submit" value="Random" id="random_button">
             </form>
