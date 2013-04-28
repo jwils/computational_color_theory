@@ -11,6 +11,13 @@ namespace :analyze do
     end
   end
 
+  task :print_all_csvs => :environment do
+    Experiment.all.each do |exp|
+      filename = "results/results_v#{exp.id}.csv"
+      File.open(File.join(Rails.root, filename), 'w') {|f| f.write(exp.questions.generate_csv(exp.id)) }
+    end
+  end
+
   task :update_questions => :environment do
     wrong_answer_count = Hash.new
     wrong_answer_count.default= 0
@@ -26,7 +33,6 @@ namespace :analyze do
         else
           img = "img1"
         end
-
 
         question.responses.where(:chosen_image => img).each do |response|
           wrong_answer_count[response.survey] += 1
