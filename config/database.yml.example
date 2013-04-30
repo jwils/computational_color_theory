@@ -22,8 +22,8 @@ production:
   adapter: mysql2
   encoding: utf8
   host: localhost
-  database: upenncolortheory
-  username: cis400
-  password: cis400colortheory 
+  database: DATABASE_NAME
+  username: DATABASE_USER
+  password: DATABASE_PASSWORD 
   pool: 5
   timeout: 5000
